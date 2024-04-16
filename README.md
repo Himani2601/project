@@ -1,6 +1,7 @@
 # project
 
-commands for connecting github to Vs Code
+commands for connecting github to Vs Code //
+
 git init
 git add README.md
 git commit -m "first commit"

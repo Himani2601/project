@@ -2,9 +2,6 @@
 
 commands for connecting github to Vs Code //
 
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:Himani2601/project.git
-git push -u origin main
+git init // first type in terminal
+git branch -M main // second add branch using cmd
+git remote add origin git@github.com:Himani2601/project.git // third add repo for commit and push

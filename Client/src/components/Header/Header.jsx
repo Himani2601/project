@@ -4,62 +4,110 @@ import { MdSearch, MdShoppingBasket } from "react-icons/md";
 import { NavLink, Link } from 'react-router-dom';
 
 const Header = () => {
-    const currentUser = false;
-    const [headerValue, setHeaderValue] = useState('Home');
-    const [linkValue, setLinkValue] = useState('/');
+    const currentUser = true; // Change to true or false as needed
+    const [headerValue, setHeaderValue] = useState(currentUser ? 'Menu' : 'Home');
+    const [linkValue, setLinkValue] = useState(currentUser ? '#' : '/');
+    const [showSearchInput, setShowSearchInput] = useState(false);
 
     const handleDropdownItemClick = (value, link) => {
         setHeaderValue(value);
         setLinkValue(link);
+        // If the value is 'Search Item', show the search input
+        if (value === 'Search Item') {
+            setShowSearchInput(true);
+        } else {
+            setShowSearchInput(false);
+        }
     };
 
     return (
-        <div className='fixed top-0 left-0 right-0 bg-white shadow-lg z-50'>
-            <Navbar className='border-b-2'>
-                <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-xl font-extrabold rounded-lg text-white' style={{ fontVariant: 'unicase' }}>
-                    <span className='px-2 py-1 bg-gradient-to-r from-orange-500 from-30% via-sky-500 via-50% to-emerald-500 to-90%  rounded-lg inline-block text-transparent bg-clip-text'>Food Space</span>
+        <div className='fixed top-0 left-0 right-0 bg-white shadow-lg z-50 items-center'>
+            <Navbar className='border-b-2 h-16'>
+                <Link to='/' className='self-center whitespace-nowrap text-sm md:text-2xl font-extrabold text-white' style={{ fontVariant: 'unicase' }}>
+                    <span className='px-2 py-1.5 bg-gradient-to-r from-orange-500 from-30% via-sky-500 via-50% to-emerald-500 to-90% inline-block text-transparent bg-clip-text'>Food Space</span>
                 </Link>
 
                 {currentUser ? (
                     <>
-                        <div className='flex justify-center items-center md:pr-[5vw]'>
-                            <div className='hidden md:flex justify-center items-center lg:gap-5 md:gap-0'>
+                        <div className='flex md:justify-between justify-end items-center w-[70%]'>
+                            <div className='flex items-center md:gap-8 md:pl-[8vw]'>
                                 <NavLink
                                     to="#"
-                                    className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold`}
+                                    className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden md:block`}
                                 >
                                     Menu
                                 </NavLink>
+                                {showSearchInput && (
+                                    <TextInput
+                                        type="text"
+                                        placeholder="Search Items.."
+                                        icon={MdSearch}
+                                        className="border-b my-1 block md:hidden"
+                                        style={{ height: "5vh", outline: "none" }}
+                                    />
+                                )}
                                 <TextInput
                                     type="text"
                                     placeholder="Search Items.."
                                     icon={MdSearch}
-                                    className="border-b w-[100%] my-2"
-                                    style={{ height: "5vh", outline: "none" }}
+                                    className="border-b hidden md:block"
+                                    style={{ height: "6vh", outline: "none" }}
                                 />
+
                                 <NavLink
                                     to="#"
-                                    className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold`}
+                                    className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden md:block`}
                                 >
-                                    <MdShoppingBasket className='w-7 h-7' />
+                                    <div className='flex gap-2 items-center'>Cart <MdShoppingBasket className='w-7 h-7' /></div>
                                 </NavLink>
+
+                                <NavLink
+                                    to={linkValue}
+                                    className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 block md:hidden`}
+                                >
+                                    {headerValue === 'Search Item' ? "" : headerValue}
+                                </NavLink>
+
+                                <div className='block md:hidden mr-4'>
+                                    <Dropdown inline>
+                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Menu', '/about')}>
+                                            <NavLink
+                                                to="#"
+                                                className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold`}
+                                            >
+                                                Menu
+                                            </NavLink>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Search Item', '#')}>
+                                            Search Item
+                                        </Dropdown.Item>
+                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick(<div className='flex gap-2 items-center'>Cart <MdShoppingBasket className='w-7 h-7' /></div>, '/contact')}>
+                                            <NavLink
+                                                to="#"
+                                                className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold`}
+                                            >
+                                                <div className='flex gap-2 items-center'>Cart <MdShoppingBasket className='w-7 h-7' /></div>
+                                            </NavLink>
+                                        </Dropdown.Item>
+                                    </Dropdown>
+                                </div>
                             </div>
-                        </div>
-                        <div className='flex gap-2'>
-                            <Dropdown inline>
-                                <Dropdown.Header>
-                                </Dropdown.Header>
-                                Logged User
-                                <Dropdown.Divider />
-                                <Dropdown.Item className='text-md'>
-                                    {/* onClick={handleSignout} */}
-                                    Sign Out
-                                </Dropdown.Item>
-                            </Dropdown>
+                            <div className='flex gap-2'>
+                                <Dropdown inline>
+                                    <Dropdown.Header>
+                                    </Dropdown.Header>
+                                    Logged User
+                                    <Dropdown.Divider />
+                                    <Dropdown.Item className='text-md'>
+                                        {/* onClick={handleSignout} */}
+                                        Sign Out
+                                    </Dropdown.Item>
+                                </Dropdown>
+                            </div>
                         </div>
                     </>
                 ) : (
-                    <div className='flex flex-wrap gap-2 md:gap-3 items-center'>
+                    <div className='flex flex-wrap md:gap-3 items-center'>
                         <NavLink
                             to="#"
                             className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold hidden md:block`}
@@ -84,7 +132,7 @@ const Header = () => {
                         >
                             {headerValue}
                         </NavLink>
-                        <div className='block md:hidden mr-3'>
+                        <div className='block md:hidden mr-4'>
                             <Dropdown inline>
                                 <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Home', '/')}>
                                     <NavLink

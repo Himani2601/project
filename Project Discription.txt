@@ -5,6 +5,15 @@ Frontend : React Js, Tailwind CSS, Flowbite-React
 Backend : Node Js, Express Js
 Database : MangoDB
 
+How to Run :
+1. Frontend :
+    cd project\Client
+    npm run dev
+
+2. Backend :
+    cd project\Server
+    npm run dev
+
 Explanation :
 1. Today i have created Header section of this project where i Have used Tailwind CSS and Flowbite-React.
 2. I have used Tailwind CSS for styling and Flowbite-React for predefined component to direct use.

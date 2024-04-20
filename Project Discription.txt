@@ -1,0 +1,10 @@
+Project Name : Food Delivery Application (webApp)
+Author and Owner : Himani Patil
+Stack : MERN (MongoDB, Express, React, Node)
+Frontend : React Js, Tailwind CSS, Flowbite-React
+Backend : Node Js, Express Js
+Database : MangoDB
+
+Explanation :
+1. Today i have created Header section of this project where i Have used Tailwind CSS and Flowbite-React.
+2. I have used Tailwind CSS for styling and Flowbite-React for predefined component to direct use.

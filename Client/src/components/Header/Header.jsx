@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Navbar, Button, Dropdown, TextInput } from "flowbite-react";
+import { Navbar, Button, Dropdown, TextInput, Avatar } from "flowbite-react";
 import { MdSearch, MdShoppingBasket } from "react-icons/md";
 import { NavLink, Link } from 'react-router-dom';
 
 const Header = () => {
     const currentUser = true; // Change to true or false as needed
     const [headerValue, setHeaderValue] = useState(currentUser ? 'Menu' : 'Home');
-    const [linkValue, setLinkValue] = useState(currentUser ? '#' : '/');
+    const [linkValue, setLinkValue] = useState(currentUser ? '/menu' : '/');
     const [showSearchInput, setShowSearchInput] = useState(false);
 
     const handleDropdownItemClick = (value, link) => {
@@ -30,9 +30,9 @@ const Header = () => {
                 {currentUser ? (
                     <>
                         <div className='flex md:justify-between justify-end items-center w-[70%]'>
-                            <div className='flex items-center md:gap-8 md:pl-[8vw]'>
+                            <div className='flex items-center md:gap-8 md:pl-[2vw]'>
                                 <NavLink
-                                    to="#"
+                                    to="/menu"
                                     className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden md:block`}
                                 >
                                     Menu
@@ -46,19 +46,24 @@ const Header = () => {
                                         style={{ height: "5vh", outline: "none" }}
                                     />
                                 )}
-                                <TextInput
-                                    type="text"
-                                    placeholder="Search Items.."
-                                    icon={MdSearch}
-                                    className="border-b hidden md:block"
-                                    style={{ height: "6vh", outline: "none" }}
-                                />
-
+                                <Link to='/search'>
+                                    <TextInput
+                                        type="text"
+                                        placeholder="Search Items.."
+                                        icon={MdSearch}
+                                        className="border-b hidden md:block w-[25vw]"
+                                        style={{ height: "5.5vh", outline: "none" }}
+                                    />
+                                </Link>
                                 <NavLink
-                                    to="#"
+                                    to="/cart"
                                     className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden md:block`}
                                 >
-                                    <div className='flex gap-2 items-center'>Cart <MdShoppingBasket className='w-7 h-7' /></div>
+                                    <div className='flex gap-2 items-center relative'>
+                                        Cart <MdShoppingBasket className='w-7 h-7' />
+                                        <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>
+                                    </div>
+
                                 </NavLink>
 
                                 <NavLink
@@ -70,36 +75,46 @@ const Header = () => {
 
                                 <div className='block md:hidden mr-4'>
                                     <Dropdown inline>
-                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Menu', '/about')}>
+                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Menu', '/menu')}>
                                             <NavLink
                                                 to="#"
-                                                className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold`}
+                                                className='block py-2 duration-200 text-gray-900 font-semibold'
                                             >
                                                 Menu
                                             </NavLink>
                                         </Dropdown.Item>
-                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Search Item', '#')}>
+                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Search Item', '/search')}>
                                             Search Item
                                         </Dropdown.Item>
-                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick(<div className='flex gap-2 items-center'>Cart <MdShoppingBasket className='w-7 h-7' /></div>, '/contact')}>
+                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick(<div className='flex gap-2 items-center relative '>
+                                            Cart <MdShoppingBasket className='w-7 h-7' />
+                                            <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>
+                                        </div>, '/cart')}>
                                             <NavLink
                                                 to="#"
-                                                className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold`}
+                                                className='block py-2 duration-200 text-gray-900 font-semibold'
                                             >
-                                                <div className='flex gap-2 items-center'>Cart <MdShoppingBasket className='w-7 h-7' /></div>
+                                                <div className='flex gap-2 items-center relative'>
+                                                    Cart <MdShoppingBasket className='w-7 h-7' />
+                                                    <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>
+                                                </div>
                                             </NavLink>
                                         </Dropdown.Item>
                                     </Dropdown>
                                 </div>
                             </div>
                             <div className='flex gap-2'>
-                                <Dropdown inline>
-                                    <Dropdown.Header>
+                                <Dropdown arrowIcon={false} inline label={
+                                    <Avatar
+                                        alt='user'
+                                        img='https://media.istockphoto.com/id/1393750072/vector/flat-white-icon-man-for-web-design-silhouette-flat-illustration-vector-illustration-stock.jpg?s=612x612&w=0&k=20&c=s9hO4SpyvrDIfELozPpiB_WtzQV9KhoMUP9R9gVohoU='
+                                        rounded className='w-10 h-5' />
+                                }>
+                                    <Dropdown.Header className='text-center'>
+                                        {'Welcome, User'}
                                     </Dropdown.Header>
-                                    Logged User
                                     <Dropdown.Divider />
-                                    <Dropdown.Item className='text-md'>
-                                        {/* onClick={handleSignout} */}
+                                    <Dropdown.Item className='text-md justify-center'>
                                         Sign Out
                                     </Dropdown.Item>
                                 </Dropdown>
@@ -109,7 +124,7 @@ const Header = () => {
                 ) : (
                     <div className='flex flex-wrap md:gap-3 items-center'>
                         <NavLink
-                            to="#"
+                            to="/"
                             className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold hidden md:block`}
                         >
                             Home
@@ -136,7 +151,7 @@ const Header = () => {
                             <Dropdown inline>
                                 <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Home', '/')}>
                                     <NavLink
-                                        to="#"
+                                        to="/"
                                         className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold`}
                                     >
                                         Home
@@ -160,7 +175,7 @@ const Header = () => {
                                 </Dropdown.Item>
                             </Dropdown>
                         </div>
-                        <Link to="#">
+                        <Link to="/signin">
                             <Button gradientDuoTone="purpleToPink" outline>
                                 Sign In
                             </Button>

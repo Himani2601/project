@@ -3,7 +3,7 @@ import Banner from '../components/Home/Banner'
 
 const Home = () => {
     return (
-        <div className='min-h-screen text-black mt-16'>
+        <div className='min-h-screen text-black md:mt-5'>
             <Banner />
         </div>
     )

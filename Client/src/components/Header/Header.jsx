@@ -38,13 +38,15 @@ const Header = () => {
                                     Menu
                                 </NavLink>
                                 {showSearchInput && (
-                                    <TextInput
-                                        type="text"
-                                        placeholder="Search Items.."
-                                        icon={MdSearch}
-                                        className="border-b my-1 block md:hidden"
-                                        style={{ height: "5vh", outline: "none" }}
-                                    />
+                                    <Link to='/search'>
+                                        <TextInput
+                                            type="text"
+                                            placeholder="Search Items.."
+                                            icon={MdSearch}
+                                            className="border-b my-1 block md:hidden"
+                                            style={{ height: "5vh", outline: "none" }}
+                                        />
+                                    </Link>
                                 )}
                                 <Link to='/search'>
                                     <TextInput

@@ -4,13 +4,13 @@ To log in to GitHub using Git Bash, you can follow these steps:
 
 2. Run the following command to set your Git username:
    ```
-   git config --global user.name "Your GitHub Username"
+   git config --global user.name "Himani2601"
    ```
    Replace "Your GitHub Username" with your actual GitHub username.
 
 3. Run the following command to set your Git email address:
    ```
-   git config --global user.email "your_email@example.com"
+   git config --global user.email "himanipatil2612@gmail.com"
    ```
    Replace "your_email@example.com" with the email associated with your GitHub account.
 

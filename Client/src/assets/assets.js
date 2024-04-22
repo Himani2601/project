@@ -121,230 +121,257 @@ export const food_list = [
         _id: "1",
         name: "Greek salad",
         image: food_1,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 840,
+        description: "A refreshing Greek salad featuring crisp lettuce, juicy tomatoes, tangy olives, creamy feta cheese, and a zesty vinaigrette dressing.",
         category: "Salad"
     },
     {
         _id: "2",
         name: "Veg salad",
         image: food_2,
-        price: 18,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1260,
+        description: "A delightful veg salad packed with fresh cucumbers, crunchy carrots, vibrant bell peppers, and crisp lettuce, tossed in a light and flavorful dressing.",
         category: "Salad"
-    }, {
+    },
+    {
         _id: "3",
         name: "Clover Salad",
         image: food_3,
-        price: 16,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1120,
+        description: "A unique clover salad featuring a blend of nutritious greens, earthy roasted beets, creamy goat cheese, and a balsamic glaze for a touch of sweetness.",
         category: "Salad"
-    }, {
+    },
+    {
         _id: "4",
         name: "Chicken Salad",
         image: food_4,
-        price: 24,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1680,
+        description: "Savor the flavors of tender grilled chicken breast, crisp lettuce, ripe cherry tomatoes, crunchy cucumbers, and a tangy honey mustard dressing in this delightful chicken salad.",
         category: "Salad"
-    }, {
+    },
+    {
         _id: "5",
         name: "Lasagna Rolls",
         image: food_5,
-        price: 14,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 980,
+        description: "Indulge in these savory lasagna rolls filled with a rich and flavorful mixture of seasoned ground beef, creamy ricotta cheese, and tangy marinara sauce, baked to perfection.",
         category: "Rolls"
-    }, {
+    },
+    {
         _id: "6",
         name: "Peri Peri Rolls",
         image: food_6,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 840,
+        description: "Enjoy the fiery flavors of peri peri chicken wrapped in soft rolls, complemented by crunchy lettuce, sliced tomatoes, and a drizzle of tangy peri peri sauce.",
         category: "Rolls"
-    }, {
+    },
+    {
         _id: "7",
         name: "Chicken Rolls",
         image: food_7,
-        price: 20,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1400,
+        description: "Satisfy your hunger with these hearty chicken rolls stuffed with tender shredded chicken, aromatic spices, fresh vegetables, and a creamy garlic mayo sauce.",
         category: "Rolls"
-    }, {
+    },
+    {
         _id: "8",
         name: "Veg Rolls",
         image: food_8,
-        price: 15,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1050,
+        description: "Delight in these veg rolls filled with a medley of colorful vegetables, seasoned with aromatic herbs and spices, and wrapped in a soft tortilla for a satisfying snack.",
         category: "Rolls"
-    }, {
+    },
+    {
         _id: "9",
         name: "Ripple Ice Cream",
         image: food_9,
-        price: 14,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Deserts"
-    }, {
+        price: 980,
+        description: "Indulge your sweet tooth with creamy ripple ice cream, featuring luscious ribbons of caramel swirled through rich vanilla ice cream for a decadent treat.",
+        category: "Desserts"
+    },
+    {
         _id: "10",
         name: "Fruit Ice Cream",
         image: food_10,
-        price: 22,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Deserts"
-    }, {
+        price: 1540,
+        description: "Treat yourself to a refreshing fruit ice cream bursting with the flavors of ripe strawberries, juicy mangoes, and tangy pineapple, blended into creamy perfection.",
+        category: "Desserts"
+    },
+    {
         _id: "11",
         name: "Jar Ice Cream",
         image: food_11,
-        price: 10,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Deserts"
-    }, {
+        price: 700,
+        description: "Savor the nostalgia with jar ice cream, featuring layers of creamy chocolate and vanilla ice cream, crunchy cookie crumbles, and rich fudge sauce for a delightful dessert.",
+        category: "Desserts"
+    },
+    {
         _id: "12",
         name: "Vanilla Ice Cream",
         image: food_12,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Deserts"
+        price: 840,
+        description: "Indulge in classic vanilla ice cream, made with the finest Madagascar vanilla beans for a smooth and creamy treat that never goes out of style.",
+        category: "Desserts"
     },
     {
         _id: "13",
         name: "Chicken Sandwich",
         image: food_13,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 840,
+        description: "Sink your teeth into a delicious chicken sandwich featuring tender grilled chicken breast, crisp lettuce, ripe tomatoes, and creamy mayo, all nestled between soft slices of bread.",
         category: "Sandwich"
     },
     {
         _id: "14",
         name: "Vegan Sandwich",
         image: food_14,
-        price: 18,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1260,
+        description: "Enjoy a flavorful vegan sandwich filled with marinated tofu, crunchy veggies, avocado slices, and a creamy hummus spread, served on whole grain bread for a wholesome meal.",
         category: "Sandwich"
-    }, {
+    },
+    {
         _id: "15",
         name: "Grilled Sandwich",
         image: food_15,
-        price: 16,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1120,
+        description: "Savor the goodness of a grilled sandwich packed with melted cheese, thinly sliced ham, juicy tomatoes, and tangy mustard, grilled to perfection for a comforting snack.",
         category: "Sandwich"
-    }, {
+    },
+    {
         _id: "16",
         name: "Bread Sandwich",
         image: food_16,
-        price: 24,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1680,
+        description: "Indulge in a hearty bread sandwich layered with flavorful meats, crisp lettuce, juicy tomatoes, and creamy spreads, all sandwiched between slices of freshly baked bread.",
         category: "Sandwich"
-    }, {
+    },
+    {
         _id: "17",
         name: "Cup Cake",
         image: food_17,
-        price: 14,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 980,
+        description: "Delight your taste buds with a scrumptious cupcake topped with fluffy frosting and colorful sprinkles, perfect for satisfying your sweet cravings anytime.",
         category: "Cake"
-    }, {
+    },
+    {
         _id: "18",
         name: "Vegan Cake",
         image: food_18,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 840,
+        description: "Indulge guilt-free with a delectable vegan cake made with wholesome ingredients and topped with a luscious dairy-free frosting, offering a delightful treat for all.",
         category: "Cake"
-    }, {
+    },
+    {
         _id: "19",
         name: "Butterscotch Cake",
         image: food_19,
-        price: 20,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1400,
+        description: "Treat yourself to a decadent butterscotch cake featuring layers of moist sponge cake, creamy butterscotch frosting, and crunchy caramelized nuts for an irresistible dessert experience.",
         category: "Cake"
-    }, {
+    },
+    {
         _id: "20",
         name: "Sliced Cake",
         image: food_20,
-        price: 15,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1050,
+        description: "Enjoy a slice of heavenly cake with a variety of flavors to choose from, including rich chocolate, velvety red velvet, moist carrot, and more, perfect for any celebration.",
         category: "Cake"
-    }, {
+    },
+    {
         _id: "21",
-        name: "Garlic Mushroom ",
+        name: "Garlic Mushroom",
         image: food_21,
-        price: 14,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 980,
+        description: "Savor the earthy flavors of garlic mushrooms sautéed to perfection, served with a drizzle of herb-infused olive oil and a sprinkle of Parmesan cheese for a delightful appetizer.",
         category: "Pure Veg"
-    }, {
+    },
+    {
         _id: "22",
         name: "Fried Cauliflower",
         image: food_22,
-        price: 22,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1540,
+        description: "Indulge in crispy fried cauliflower florets coated in a seasoned batter, served with a tangy dipping sauce for a satisfying snack that's perfect for sharing.",
         category: "Pure Veg"
-    }, {
+    },
+    {
         _id: "23",
         name: "Mix Veg Pulao",
         image: food_23,
-        price: 10,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 700,
+        description: "Savor the aromatic flavors of mix veg pulao, featuring fragrant basmati rice cooked with a colorful assortment of vegetables, aromatic spices, and herbs for a comforting meal.",
         category: "Pure Veg"
-    }, {
+    },
+    {
         _id: "24",
         name: "Rice Zucchini",
         image: food_24,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 840,
+        description: "Enjoy a flavorful rice zucchini dish featuring tender zucchini sautéed with aromatic spices, herbs, and cooked with fluffy basmati rice for a nutritious and satisfying meal.",
         category: "Pure Veg"
     },
     {
         _id: "25",
         name: "Cheese Pasta",
         image: food_25,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 840,
+        description: "Indulge in creamy cheese pasta made with al dente pasta tossed in a rich and velvety cheese sauce, sprinkled with Parmesan cheese for an irresistible comfort food classic.",
         category: "Pasta"
     },
     {
         _id: "26",
         name: "Tomato Pasta",
         image: food_26,
-        price: 18,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1260,
+        description: "Savor the freshness of tomato pasta featuring tangy tomato sauce tossed with tender pasta, garlic, onions, and aromatic herbs for a simple yet satisfying Italian dish.",
         category: "Pasta"
-    }, {
+    },
+    {
         _id: "27",
         name: "Creamy Pasta",
         image: food_27,
-        price: 16,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1120,
+        description: "Indulge in creamy pasta made with smooth Alfredo sauce, tender pasta, grilled chicken, and sautéed vegetables, all combined for a luxurious and satisfying meal.",
         category: "Pasta"
-    }, {
+    },
+    {
         _id: "28",
         name: "Chicken Pasta",
         image: food_28,
-        price: 24,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1680,
+        description: "Enjoy hearty chicken pasta featuring succulent pieces of grilled chicken breast, tossed with al dente pasta, sun-dried tomatoes, spinach, and a creamy garlic sauce for a flavorful meal.",
         category: "Pasta"
-    }, {
+    },
+    {
         _id: "29",
-        name: "Buttter Noodles",
+        name: "Butter Noodles",
         image: food_29,
-        price: 14,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 980,
+        description: "Indulge in buttery noodles tossed in a savory sauce made with butter, garlic, and herbs, creating a simple yet delicious dish that's perfect for any occasion.",
         category: "Noodles"
-    }, {
+    },
+    {
         _id: "30",
         name: "Veg Noodles",
         image: food_30,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 840,
+        description: "Delight in veg noodles made with stir-fried vegetables, tender noodles, and a flavorful sauce, creating a quick and satisfying meal that's bursting with vibrant flavors.",
         category: "Noodles"
-    }, {
+    },
+    {
         _id: "31",
         name: "Somen Noodles",
         image: food_31,
-        price: 20,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1400,
+        description: "Enjoy somen noodles, a light and refreshing Japanese dish featuring thin wheat noodles served cold with a dipping sauce, garnished with fresh toppings for a delightful meal.",
         category: "Noodles"
-    }, {
+    },
+    {
         _id: "32",
         name: "Cooked Noodles",
         image: food_32,
-        price: 15,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 1050,
+        description: "Savor the flavors of cooked noodles tossed in a savory sauce with your choice of protein and vegetables, creating a customizable and satisfying noodle dish for any palate.",
         category: "Noodles"
     }
-]
+];
+

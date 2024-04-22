@@ -8,6 +8,23 @@
     }
 }
 
+@keyframes slide-in {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .animate-fade-in {
     animation: fade-in 2.5s;
+}
+
+.animate-slide-in {
+    animation: slide-in 1s ease-out;
+    animation-fill-mode: forwards;
 }

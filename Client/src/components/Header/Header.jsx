@@ -23,17 +23,17 @@ const Header = () => {
     return (
         <div className='fixed top-0 left-0 right-0 bg-white shadow-lg z-50 items-center'>
             <Navbar className='border-b-2 h-16'>
-                <Link to='/' className='self-center whitespace-nowrap text-sm md:text-2xl font-extrabold text-white' style={{ fontVariant: 'unicase' }}>
+                <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-2xl font-extrabold text-white' style={{ fontVariant: 'unicase' }}>
                     <span className='px-2 py-1.5 bg-gradient-to-r from-orange-500 from-30% via-sky-500 via-50% to-emerald-500 to-90% inline-block text-transparent bg-clip-text'>Food Space</span>
                 </Link>
 
                 {currentUser ? (
                     <>
-                        <div className='flex md:justify-between justify-end items-center w-[70%]'>
+                        <div className='flex sm:justify-between justify-end items-center w-[70%]'>
                             <div className='flex items-center md:gap-8 md:pl-[2vw]'>
                                 <NavLink
                                     to="/menu"
-                                    className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden md:block`}
+                                    className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden sm:block`}
                                 >
                                     Menu
                                 </NavLink>
@@ -43,7 +43,7 @@ const Header = () => {
                                             type="text"
                                             placeholder="Search Items.."
                                             icon={MdSearch}
-                                            className="border-b my-1 block md:hidden"
+                                            className="border-b my-1 block sm:hidden"
                                             style={{ height: "5vh", outline: "none" }}
                                         />
                                     </Link>
@@ -53,13 +53,13 @@ const Header = () => {
                                         type="text"
                                         placeholder="Search Items.."
                                         icon={MdSearch}
-                                        className="border-b hidden md:block w-[25vw]"
+                                        className="border-b hidden sm:block w-[25vw]"
                                         style={{ height: "5.5vh", outline: "none" }}
                                     />
                                 </Link>
                                 <NavLink
                                     to="/cart"
-                                    className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden md:block`}
+                                    className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden sm:block`}
                                 >
                                     <div className='flex gap-2 items-center relative'>
                                         Cart <MdShoppingBasket className='w-7 h-7' />
@@ -70,12 +70,12 @@ const Header = () => {
 
                                 <NavLink
                                     to={linkValue}
-                                    className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 block md:hidden`}
+                                    className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 block sm:hidden`}
                                 >
                                     {headerValue === 'Search Item' ? "" : headerValue}
                                 </NavLink>
 
-                                <div className='block md:hidden mr-4'>
+                                <div className='block sm:hidden mr-4'>
                                     <Dropdown inline>
                                         <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Menu', '/menu')}>
                                             <NavLink
@@ -124,32 +124,32 @@ const Header = () => {
                         </div>
                     </>
                 ) : (
-                    <div className='flex flex-wrap md:gap-3 items-center'>
+                    <div className='flex flex-wrap sm:gap-3 items-center'>
                         <NavLink
                             to="/"
-                            className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold hidden md:block`}
+                            className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold hidden sm:block`}
                         >
                             Home
                         </NavLink>
                         <NavLink
                             to="#"
-                            className={({ isActive }) => `block py-2 pr-[1vw] pl-[1vw] duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold hidden md:block`}
+                            className={({ isActive }) => `block py-2 pr-[1vw] pl-[1vw] duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold hidden sm:block`}
                         >
                             About
                         </NavLink>
                         <NavLink
                             to="#"
-                            className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 hidden md:block`}
+                            className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 hidden sm:block`}
                         >
                             Contact Us
                         </NavLink>
                         <NavLink
                             to={linkValue}
-                            className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 block md:hidden`}
+                            className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 block sm:hidden`}
                         >
                             {headerValue}
                         </NavLink>
-                        <div className='block md:hidden mr-4'>
+                        <div className='block sm:hidden mr-4'>
                             <Dropdown inline>
                                 <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Home', '/')}>
                                     <NavLink

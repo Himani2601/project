@@ -4,7 +4,7 @@ import { MdSearch, MdShoppingBasket } from "react-icons/md";
 import { NavLink, Link } from 'react-router-dom';
 
 const Header = () => {
-    const currentUser = false; // Change to true or false as needed
+    const currentUser = true; // Change to true or false as needed
     const [headerValue, setHeaderValue] = useState(currentUser ? 'Menu' : 'Home');
     const [linkValue, setLinkValue] = useState(currentUser ? '/menu' : '/');
     const [showSearchInput, setShowSearchInput] = useState(false);

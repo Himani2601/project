@@ -5,7 +5,8 @@ import Home from "./pages/Home"
 import Cart from './components/Cart/Cart'
 import Menu from "./components/Menu/Menu"
 import Search from "./components/Search/Search"
-import SignIn from './components/SignUp and SignIn/SignIn'
+import SignIn from './pages/SignIn'
+import SignUp from "./pages/SignUp"
 
 // import PrivateRoute from "./components/PrivateRoute"
 
@@ -18,6 +19,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           {/* <Route element={<PrivateRoute />}> */}
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />

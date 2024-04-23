@@ -2,7 +2,7 @@ import bcryptjs from 'bcryptjs';
 import User from '../models/user.model.js';
 
 export const signup = async (req, res, next) => {
-    const { name, username, email, password, isSeller } = req.body;
+    const { name, username, email, password, isseller } = req.body;
     try {
         const user = await User.findOne({ email });
         if (user) {
@@ -10,8 +10,8 @@ export const signup = async (req, res, next) => {
         }
         const hashedPassword = await bcryptjs.hash(password, 12);
         const newUserFields = { name, username, email, password: hashedPassword };
-        if (isSeller !== undefined) {
-            newUserFields.isSeller = isSeller;
+        if (isseller !== undefined) {
+            newUserFields.isseller = isseller;
         }
         const newUser = new User(newUserFields);
         await newUser.save();

@@ -3,7 +3,7 @@ Author and Owner : Himani Patil
 Stack : MERN (MongoDB, Express, React, Node)
 Frontend : React Js, Tailwind CSS, Flowbite-React
 Backend : Node Js, Express Js
-Database : MangoDB
+Database : MongoDB
 
 How to Run :
 1. Frontend :
@@ -14,7 +14,25 @@ How to Run :
     cd project\Server
     npm run dev
 
+Dependencies : Located in Package.json
+
+    Frontend :
+    1. flowbite-react - for using predefined components for soft and smooth handling (e.g. button, textInput, textArea, etc)
+    2. react - inbuilt
+    3. react-dom - inbuilt
+    4. react-icons - fot icons in svg format to use for showcasing UI more good.
+    5. react-router-dom - for route creation, navigation, etc
+
+    Backend :
+    1. bcryptjs - for encryption of passwords.
+    2. dotenv - for not encasing the database connections, secret keys and other stuffs relted security purpose.
+    3. express - for backend code as Node js is also fisible for writing codes for backend but exprrss provides more simplicity for expossing the codes and creating smoothly and effeciently.
+    4. mongoose - for connection to database which is NoSQL MongoDB.
+    5. nodemon - for auto restarting the backend while changes happens
+
 Explanation :
+
 1. Today i have created Header section of this project where i Have used Tailwind CSS and Flowbite-React.
 2. I have used Tailwind CSS for styling and Flowbite-React for predefined component to direct use.
 3. Last Commit is for Header as i have made header flexible for logged in user and responsive as well for logged as well as not logged
+4. SignIn and SignUp UI/UX complete with resposiveness use Flowbite and some state management to catchup the data for sending to backend

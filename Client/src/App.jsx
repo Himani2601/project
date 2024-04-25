@@ -7,6 +7,7 @@ import Menu from "./components/Menu/Menu"
 import Search from "./components/Search/Search"
 import SignIn from './pages/SignIn'
 import SignUp from "./pages/SignUp"
+import FooterS from './components/Footer/Footer'
 
 // import PrivateRoute from "./components/PrivateRoute"
 
@@ -29,6 +30,7 @@ const App = () => {
           {/* </Route> */}
           {/* <Route path="/signin" element={<SignInPage />} /> */}
         </Routes>
+        <footer><FooterS /></footer>
       </BrowserRouter>
     </>
   )

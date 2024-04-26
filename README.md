@@ -1,7 +1,3 @@
-Sure, here's a basic template for a README file for your MERN stack project:
-
----
-
 # Food Space
 
 Food Space is a web application similar to platforms like Zomato and Swiggy. It aims to provide a platform for users to browse and order food from various sellers while maintaining transparency and convenience.

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Navbar, Button, Dropdown, TextInput, Avatar } from "flowbite-react";
 import { MdSearch, MdShoppingBasket } from "react-icons/md";
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const currentUser = true; // Change to true or false as needed
     const [headerValue, setHeaderValue] = useState(currentUser ? 'Menu' : 'Home');
     const [linkValue, setLinkValue] = useState(currentUser ? '/menu' : '/');
     const [showSearchInput, setShowSearchInput] = useState(false);
+    const navigate = useNavigate();
 
     const handleDropdownItemClick = (value, link) => {
         setHeaderValue(value);
@@ -18,6 +19,7 @@ const Header = () => {
         } else {
             setShowSearchInput(false);
         }
+        navigate(link);
     };
 
     return (

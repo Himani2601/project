@@ -43,10 +43,4 @@ Food Space is a web application similar to platforms like Zomato and Swiggy. It 
    npm start
    ```
 
-## Contributing
-
-Contributions are welcome! Please follow the [contribution guidelines](CONTRIBUTING.md).
-
----
-
 Feel free to customize and expand upon this template to include any additional information specific to your project. Make sure to replace placeholder URLs and usernames with your actual project details.

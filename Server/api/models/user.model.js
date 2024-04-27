@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const userSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -30,7 +32,11 @@ const userSchema = new mongoose.Schema({
     isSeller: {
         type: Boolean,
         default: false
-    }
+    },
+    sellingItems: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }]
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

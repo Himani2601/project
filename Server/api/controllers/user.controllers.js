@@ -1,5 +1,6 @@
-import bcryptjs from 'bcryptjs';
 import User from '../models/user.model.js';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export const signup = async (req, res, next) => {
     const { name, username, email, password, isseller } = req.body;
@@ -32,11 +33,11 @@ export const signin = async (req, res, next) => {
         if (!isPasswordCorrect) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.cookie('access_token', token, { httpOnly: true }).status(200).json({ message: 'User has been signed in' });
-
+        const token = jwt.sign({ id: validUser._id, username: validUser.username, isAdmin: validUser.isAdmin }, process.env.JWT_SECRET);
+        const { password: pass, ...rest } = validUser._doc;
+        res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest);
     } catch (error) {
-        next(error);
+        next(error)
     }
 }
 
@@ -47,6 +48,30 @@ export const signout = async (req, res, next) => {
         next(error);
     }
 };
+
+export const forgetPassword = async (req, res, next) => {
+    const { email, cpassword, npassword } = req.body;
+    try {
+        const validUser = await User.findOne({ email });
+
+        if (!validUser) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+
+        const validPassword = cpassword === npassword;
+        if (!validPassword) {
+            return res.status(400).json({ error: 'Both Passwords need to be same' });
+        }
+
+        const hashedPassword = bcryptjs.hashSync(npassword, 10);
+        validUser.password = hashedPassword;
+        await validUser.save();
+        res.json('Password reset successfully.');
+    } catch (error) {
+        next(error);
+    }
+};
+
 
 
 

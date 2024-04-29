@@ -20,7 +20,6 @@ Food Space is a web application similar to platforms like Zomato and Swiggy. It 
 - **Routing**: React Router
 - **State Management**: React Context API
 - **Styling**: CSS with Tailwind CSS
-- **Deployment**: Heroku for backend, Netlify for frontend
 
 ## Setup
 

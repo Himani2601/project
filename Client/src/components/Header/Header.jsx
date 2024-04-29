@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, Button, Dropdown, TextInput, Avatar } from "flowbite-react";
 import { MdSearch, MdShoppingBasket } from "react-icons/md";
 import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { StoreContext } from '../../context/StoreContext';
 
 const Header = () => {
     const currentUser = true; // Change to true or false as needed
     const [headerValue, setHeaderValue] = useState(currentUser ? 'Menu' : 'Home');
     const [linkValue, setLinkValue] = useState(currentUser ? '/menu' : '/');
     const [showSearchInput, setShowSearchInput] = useState(false);
+    const { getTotalCartAmount } = useContext(StoreContext);
+
     const navigate = useNavigate();
 
     const handleDropdownItemClick = (value, link) => {
@@ -65,7 +68,7 @@ const Header = () => {
                                 >
                                     <div className='flex gap-2 items-center relative'>
                                         Cart <MdShoppingBasket className='w-7 h-7' />
-                                        <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>
+                                        {getTotalCartAmount() !== 0 && <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>}
                                     </div>
 
                                 </NavLink>

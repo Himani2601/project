@@ -2,7 +2,7 @@ import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const SignIn = () => {
+const ForgetPassword = () => {
     const [formData, setFormData] = useState({});
     const navigate = useNavigate();
     const handleChange = (e) => {
@@ -45,7 +45,7 @@ const SignIn = () => {
             </div>
             <div className='md:w-[30%] w-[85%]'>
                 <form className='flex flex-col gap-4'>
-                    <span className='px-2 py-1 text-black rounded-lg inline-block font-bold text-5xl md:text-4xl text-center mb-5' style={{ fontVariant: 'petite-caps' }}>SignIn Page</span>
+                    <span className='px-2 py-1 text-black rounded-lg inline-block font-bold text-5xl md:text-4xl text-center mb-5' style={{ fontVariant: 'petite-caps' }}>Forget Password Page</span>
                     <div>
                         <Label value='Your email' />
                         <TextInput
@@ -57,29 +57,33 @@ const SignIn = () => {
                         />
                     </div>
                     <div className='gap-2'>
-                        <Label value='Your Password' />
+                        <Label value='New Password' />
                         <TextInput
                             type='password'
                             placeholder='********'
-                            id='password'
+                            id='npassword'
+                            onChange={handleChange}
+                            className='mt-2'
+                        />
+                    </div>
+                    <div className='gap-2'>
+                        <Label value='Confirm Password' />
+                        <TextInput
+                            type='password'
+                            placeholder='********'
+                            id='cpassword'
                             onChange={handleChange}
                             className='mt-2'
                         />
                     </div>
                     <Button gradientDuoTone="purpleToPink" outline>
-                        Sign In
+                        Forget Password
                     </Button>
                 </form>
                 <div className='flex gap-2 text-sm font-mono font-semibold mt-5 justify-center'>
-                    <span>Dont Have an account?</span>
-                    <Link to='/signup' className='text-blue-500'>
-                        Sign Up
-                    </Link>
-                </div>
-                <div className='flex gap-2 text-sm font-mono font-semibold mt-5 justify-center'>
-                    <span>Forget Password?</span>
-                    <Link to='/reset' className='text-blue-500'>
-                        Reset
+                    <span>Remember Credentials?</span>
+                    <Link to='/signin' className='text-blue-500'>
+                        Sign In
                     </Link>
                 </div>
             </div>
@@ -87,4 +91,4 @@ const SignIn = () => {
     );
 }
 
-export default SignIn;
+export default ForgetPassword;

@@ -25,7 +25,6 @@ const Banner = () => {
                     </button>
                 </Link>
             </div>
-
         </section>
     )
 }

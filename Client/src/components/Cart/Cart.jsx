@@ -39,7 +39,7 @@ const Cart = () => {
                 })}
 
             </div>
-            {Object.keys(cartItems).length > 0 && (
+            {getTotalCartAmount() !== 0 && (
                 <div className="mt-8 w-[20%] mx-auto">
                     <div className="text-center mb-5">
                         <h2 className="text-lg font-bold">Cart Totals</h2>

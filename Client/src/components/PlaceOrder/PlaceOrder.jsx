@@ -20,7 +20,7 @@ const PlaceOrder = () => {
             <div className='min-h-screen mt-10 flex md:flex-row flex-col items-center justify-center md:mx-8 md:gap-16 gap-5'>
                 <div className='md:w-[30%] w-[85%] md:mb-20'>
                     <form className='flex flex-col gap-3'>
-                        <span className='px-2 py-1 text-black rounded-lg inline-block font-bold text-5xl md:text-4xl text-center mb-5' style={{ fontVariant: 'petite-caps' }}>Delivery Information</span>
+                        <span className='px-2 py-1 text-black rounded-lg inline-block font-bold text-3xl md:text-5xl text-center mb-5' style={{ fontVariant: 'petite-caps' }}>Delivery Information</span>
                         <div>
                             <Label value='Your Full Name' />
                             <TextInput
@@ -43,20 +43,20 @@ const PlaceOrder = () => {
                         </div>
                         <div className='flex gap-4'>
                             <div className='flex flex-col w-[50%] gap-2'>
-                                <Label value='Street' />
-                                <TextInput
-                                    type='text'
-                                    placeholder='Street'
-                                    id='street'
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className='flex flex-col w-[50%] gap-2'>
                                 <Label value='Plot No.' />
                                 <TextInput
                                     type='text'
                                     placeholder='e.g 0000'
                                     id='plot_no'
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className='flex flex-col w-[50%] gap-2'>
+                                <Label value='Street' />
+                                <TextInput
+                                    type='text'
+                                    placeholder='Street'
+                                    id='street'
                                     onChange={handleChange}
                                 />
                             </div>
@@ -118,7 +118,7 @@ const PlaceOrder = () => {
                     <div style={{ textAlign: "-webkit-center" }}>
                         <Link to='/placeorder'>
                             <Button gradientDuoTone="purpleToPink" outline className='mt-6'>
-                                Proceed to Checkout
+                                Proceed to Payment
                             </Button>
                         </Link>
                     </div>

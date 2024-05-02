@@ -49,7 +49,7 @@ const FooterS = () => {
                             <Footer.Title className='text-gray-200 text-lg font-semibold' style={{ fontVariant: 'unicase' }} title='Blog' />
                             <Footer.LinkGroup col>
                                 <Footer.Link className='hover:text-gray-300' href='#'>Latest Articles</Footer.Link>
-                                <Footer.Link className='hover:text-gray-300' href='#'>Recipes</Footer.Link>
+                                <Footer.Link className='hover:text-gray-300' href='#'>Variety</Footer.Link>
                             </Footer.LinkGroup>
                         </div>
                         <div>
@@ -80,7 +80,7 @@ const FooterS = () => {
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsFacebook} />
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsInstagram} />
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsTwitter} />
-                        <Footer.Icon className='hover:text-gray-300' href='https://github.com/sahandghavidel' icon={BsGithub} />
+                        <Footer.Icon className='hover:text-gray-300' href='https://github.com/himanipatil2601' icon={BsGithub} />
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsDribbble} />
                     </div>
                 </div>

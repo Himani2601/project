@@ -93,9 +93,9 @@ const Header = () => {
                                         <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Search Item', '/search')}>
                                             Search Item
                                         </Dropdown.Item>
-                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick(<div className='flex gap-2 items-center relative '>
+                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick(<div className='flex gap-2 items-center relative'>
                                             Cart <MdShoppingBasket className='w-7 h-7' />
-                                            <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>
+                                            {getTotalCartAmount() !== 0 && <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>}
                                         </div>, '/cart')}>
                                             <NavLink
                                                 to="#"
@@ -103,7 +103,7 @@ const Header = () => {
                                             >
                                                 <div className='flex gap-2 items-center relative'>
                                                     Cart <MdShoppingBasket className='w-7 h-7' />
-                                                    <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>
+                                                    {getTotalCartAmount() !== 0 && <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>}
                                                 </div>
                                             </NavLink>
                                         </Dropdown.Item>

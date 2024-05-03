@@ -42,7 +42,7 @@ const Cart = () => {
             {getTotalCartAmount() !== 0 && (
                 <div className="mt-8 w-[60%] sm:w-[35%] mx-auto">
                     <div className="text-center mb-5">
-                        <h2 className="text-lg font-bold">Cart Totals</h2>
+                        <h2 className="text-lg font-bold">Cart Total</h2>
                     </div>
                     <div className="text-center mb-5">
                         <div className='flex flex-col gap-3'>

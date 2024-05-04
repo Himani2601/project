@@ -20,6 +20,7 @@ const Cart = () => {
                 <hr className="w-full border-2 my-3" />
                 {food_list.map((item) => {
                     if (cartItems[item._id] > 0) {
+                        // console.log(item); for verification of sellerId is comming or not
                         return (
                             <React.Fragment key={item._id}>
                                 <div className="flex flex-row justify-evenly items-center mx-1 md:mx-20 text-center">

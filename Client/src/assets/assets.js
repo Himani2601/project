@@ -120,6 +120,7 @@ export const food_list = [
         _id: "1",
         name: "Greek salad",
         image: food_1,
+        sellerId: '609c6e98f0c49b3b84ad1c56',
         price: 840,
         description: "A refreshing Greek salad featuring crisp lettuce, juicy tomatoes, tangy olives, creamy feta cheese, and a zesty vinaigrette dressing.",
         category: "Salad"

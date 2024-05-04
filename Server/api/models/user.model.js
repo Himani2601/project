@@ -36,6 +36,10 @@ const userSchema = new Schema({
     sellingItems: [{
         type: Schema.Types.ObjectId,
         ref: 'Item'
+    }],
+    orders: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Order'
     }]
 }, { timestamps: true });
 

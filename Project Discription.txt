@@ -36,3 +36,6 @@ Explanation :
 2. I have used Tailwind CSS for styling and Flowbite-React for predefined component to direct use.
 3. Last Commit is for Header as i have made header flexible for logged in user and responsive as well for logged as well as not logged
 4. SignIn and SignUp UI/UX complete with resposiveness use Flowbite and some state management to catchup the data for sending to backend
+
+Template for Project report - https://www.overleaf.com/latex/templates/project-report-template-gecskp/pxvjcctfgrnf
+

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcryptjs from 'bcryptjs';
 
 const { Schema } = mongoose;
 
@@ -33,7 +34,7 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    sellingItems: [{
+    sellingItems: [{ // Include sellingItems array by default
         type: Schema.Types.ObjectId,
         ref: 'Item'
     }],
@@ -42,6 +43,20 @@ const userSchema = new Schema({
         ref: 'Order'
     }]
 }, { timestamps: true });
+
+userSchema.pre('save', function (next) {
+    if (this.isSeller) {
+        // If the user is a seller, add the sellingItems field
+        this.sellingItems = [{
+            type: Schema.Types.ObjectId,
+            ref: 'Item'
+        }];
+    } else {
+        // If the user is not a seller, remove the sellingItems field
+        this.sellingItems = undefined;
+    }
+    next();
+});
 
 const User = mongoose.model('User', userSchema);
 

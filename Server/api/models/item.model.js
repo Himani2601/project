@@ -25,7 +25,7 @@ const itemSchema = new Schema({
     },
     sellerId: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Seller',
         required: true
     }
 });

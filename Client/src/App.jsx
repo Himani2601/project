@@ -10,8 +10,7 @@ import SignUp from "./pages/SignUp"
 import FooterS from './components/Footer/Footer'
 import ForgetPassword from './pages/ForgetPassword'
 import PlaceOrder from './components/PlaceOrder/PlaceOrder'
-
-// import PrivateRoute from "./components/PrivateRoute"
+import PrivateRoute from './pages/PrivateRoutes'
 
 const App = () => {
 
@@ -24,15 +23,12 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/reset" element={<ForgetPassword />} />
-          {/* <Route element={<PrivateRoute />}> */}
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/placeorder" element={<PlaceOrder />} />
-          {/* <Route path="/myposts" element={<MyPosts />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/menu" element={<Menu />} />
             <Route path="/search" element={<Search />} />
-          {/* </Route> */}
-          {/* <Route path="/signin" element={<SignInPage />} /> */}
+            <Route path="/placeorder" element={<PlaceOrder />} />
+          </Route>
         </Routes>
         <footer><FooterS /></footer>
       </BrowserRouter>

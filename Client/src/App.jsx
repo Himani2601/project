@@ -9,8 +9,10 @@ import SignIn from './pages/SignIn'
 import SignUp from "./pages/SignUp"
 import FooterS from './components/Footer/Footer'
 import ForgetPassword from './pages/ForgetPassword'
+import AddItem from "./pages/AddItem"
 import PlaceOrder from './components/PlaceOrder/PlaceOrder'
 import PrivateRoute from './pages/PrivateRoutes'
+import Dashboard from "./components/Admin/Dashboard"
 
 const App = () => {
 
@@ -19,6 +21,8 @@ const App = () => {
       <BrowserRouter>
         <header><Header /></header>
         <Routes>
+          <Route path="/additem" element={<AddItem />} />
+          <Route path='/dashboard' element={<Dashboard />} />
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />

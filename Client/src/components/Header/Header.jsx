@@ -5,7 +5,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
 const Header = () => {
-    const { getTotalCartAmount, isUserLoggedIn, setIsUserLoggedIn } = useContext(StoreContext);
+    const { getTotalCartAmount, isUserLoggedIn, setIsUserLoggedIn, user } = useContext(StoreContext);
     const [headerValue, setHeaderValue] = useState(isUserLoggedIn ? 'Menu' : 'Home');
     const [linkValue, setLinkValue] = useState(isUserLoggedIn ? '/menu' : '/');
     const [showSearchInput, setShowSearchInput] = useState(false);
@@ -120,6 +120,12 @@ const Header = () => {
                                         {'Welcome, User'}
                                     </Dropdown.Header>
                                     <Dropdown.Divider />
+                                    {
+                                        user?.isSeller && <Link to='/dashboard'><Dropdown.Item className='text-md justify-center'>
+                                            Dashboard
+                                        </Dropdown.Item>
+                                        </Link>
+                                    }
                                     <Dropdown.Item className='text-md justify-center' onClick={handleSignout}>
                                         Sign Out
                                     </Dropdown.Item>

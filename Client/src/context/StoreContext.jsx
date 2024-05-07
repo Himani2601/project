@@ -5,6 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
+    const [user, setUser] = useState(null);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
     const addToCart = (itemId) => {
@@ -30,6 +31,17 @@ const StoreContextProvider = (props) => {
         return totalAmount;
     };
 
+    // Update to set user information upon login
+    const login = (userData) => {
+        setUser(userData);
+        setIsUserLoggedIn(true);
+    };
+
+    const logout = () => {
+        setUser(null);
+        setIsUserLoggedIn(false);
+    };
+
     const contextValue = {
         food_list,
         cartItems,
@@ -37,6 +49,9 @@ const StoreContextProvider = (props) => {
         setCartItems,
         removeFromCart,
         getTotalCartAmount,
+        user,
+        login,
+        logout,
         isUserLoggedIn,
         setIsUserLoggedIn,
     };

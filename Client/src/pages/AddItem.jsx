@@ -1,21 +1,22 @@
-import { Button, Dropdown, Label, TextInput, Textarea } from 'flowbite-react';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Button, Dropdown, Label, TextInput, Textarea, Alert, DropdownDivider } from 'flowbite-react';
 import { IoIosCloudUpload } from "react-icons/io";
+import { menu_list } from '../assets/assets'
 
 const AddItem = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const handleChange = () => { }
+    const handleChange = () => { };
 
-    const handleSubmit = () => { }
+    const handleSubmit = () => { };
 
     const handleDropdownItemClick = (category) => {
         setSelectedCategory(category);
     };
 
     return (
-        <div className='min-h-screen mt-20 flex flex-col justify-center items-center mb-20'>
+        <div className='min-h-screen flex flex-col justify-center items-center'>
             <div className='md:w-[30%] w-[85%] mb-10'>
                 <form className='flex flex-col gap-4'>
                     <span className='px-2 py-1 text-black rounded-lg inline-block font-bold text-5xl md:text-4xl text-center mb-5' style={{ fontVariant: 'petite-caps' }}>Add Item</span>
@@ -52,22 +53,22 @@ const AddItem = () => {
                                 value={selectedCategory || ''}
                                 id='category'
                                 onChange={handleChange}
-                                className='mt-2 cursor-pointer md:w-[29.5vw] w-[85vw]'
+                                className='mt-2 cursor-pointer md:w-[23vw] w-[85vw]'
                                 readOnly
                             />
                         }>
-                            <Dropdown.Item className='text-md justify-center' onClick={() => handleDropdownItemClick('Dashboard')}>
-                                Dashboard
-                            </Dropdown.Item>
-                            <Dropdown.Item className='text-md justify-center' onClick={() => handleDropdownItemClick('Settings')}>
-                                Settings
-                            </Dropdown.Item>
-                            <Dropdown.Item className='text-md justify-center' onClick={() => handleDropdownItemClick('Earnings')}>
-                                Earnings
-                            </Dropdown.Item>
-                            <Dropdown.Item className='text-md justify-center' onClick={() => handleDropdownItemClick('Sign out')}>
-                                Sign out
-                            </Dropdown.Item>
+                            <div className="max-h-60 overflow-y-auto">
+                                {menu_list.map((menuItem, index) => (
+                                    <React.Fragment key={index}>
+                                        <Dropdown.Item
+                                            className='text-md justify-center'
+                                            onClick={() => handleDropdownItemClick(menuItem.menu_name)}>
+                                            {menuItem.menu_name}
+                                        </Dropdown.Item>
+                                        {index !== menu_list.length - 1 && <DropdownDivider />} {/* Adding divider except for the last item */}
+                                    </React.Fragment>
+                                ))}
+                            </div>
                         </Dropdown>
                     </div>
                     <div className='gap-2'>
@@ -91,7 +92,7 @@ const AddItem = () => {
                 }
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default AddItem;

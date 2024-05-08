@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../context/StoreContext';
 import { Alert, Button, Label, TextInput } from 'flowbite-react';
@@ -8,7 +8,7 @@ const SignIn = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
-    const { setIsUserLoggedIn, login } = useContext(StoreContext); // Add login function from context
+    const { login } = useContext(StoreContext); // Use login function from context
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -32,9 +32,7 @@ const SignIn = () => {
             }
             if (res.ok) {
                 // Set user details in context upon successful login
-                console.log(data);
-                login(data); // Assuming API response contains user details
-                setIsUserLoggedIn(true);
+                login(data);
                 navigate('/menu');
                 setTimeout(() => {
                     setErrorMessage('');
@@ -44,6 +42,7 @@ const SignIn = () => {
             setErrorMessage(error.message);
         }
     };
+
     return (
         <div className='min-h-screen mt-10 flex items-center justify-center md:mx-8 md:flex-row flex-col md:gap-10 gap-3'>
             <div className='md:w-[40%] text-center hidden md:block'>

@@ -69,14 +69,14 @@ const FooterS = () => {
                     </div>
                 </div>
                 <Footer.Divider />
-                <div className='w-full sm:flex sm:items-center sm:justify-between'>
+                <div className='w-full sm:flex text-center sm:justify-between'>
                     <Footer.Copyright
                         className='hover:text-gray-300'
                         href='#'
                         by="Food Space"
                         year={new Date().getFullYear()}
                     />
-                    <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
+                    <div className="flex gap-6 sm:mt-0 mt-4 justify-center">
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsFacebook} />
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsInstagram} />
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsTwitter} />

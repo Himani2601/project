@@ -5,8 +5,17 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
-    const [user, setUser] = useState(null);
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [user, setUser] = useState(() => {
+        // Retrieve user information from localStorage upon component initialization
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
+    useEffect(() => {
+        // Store user information in localStorage whenever it changes
+        localStorage.setItem("user", JSON.stringify(user));
+    }, [user]);
 
     const addToCart = (itemId) => {
         if (!cartItems[itemId]) {
@@ -34,26 +43,25 @@ const StoreContextProvider = (props) => {
     // Update to set user information upon login
     const login = (userData) => {
         setUser(userData);
-        setIsUserLoggedIn(true);
     };
 
     const logout = () => {
         setUser(null);
-        setIsUserLoggedIn(false);
+        localStorage.removeItem("user"); // Remove user information from localStorage upon logout
     };
 
     const contextValue = {
         food_list,
         cartItems,
         addToCart,
+        selectedItem,
+        setSelectedItem,
         setCartItems,
         removeFromCart,
         getTotalCartAmount,
         user,
         login,
         logout,
-        isUserLoggedIn,
-        setIsUserLoggedIn,
     };
 
     return (

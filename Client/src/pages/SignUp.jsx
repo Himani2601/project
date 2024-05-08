@@ -83,6 +83,16 @@ const SignUp = () => {
                             className='mt-2'
                         />
                     </div>
+                    <div>
+                        <Label value='Location' />
+                        <TextInput
+                            type='text'
+                            placeholder='e.g. Pune'
+                            id='location'
+                            onChange={handleChange}
+                            className='mt-2'
+                        />
+                    </div>
                     <div className='gap-2'>
                         <Label value='Username' />
                         <TextInput

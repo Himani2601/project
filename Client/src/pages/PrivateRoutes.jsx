@@ -4,9 +4,9 @@ import { StoreContext } from '../context/StoreContext';
 
 export default function PrivateRoute() {
 
-    const { isUserLoggedIn } = useContext(StoreContext);
+    const { user } = useContext(StoreContext);
 
-    return isUserLoggedIn ?
+    return user ?
         <div>
             <Outlet />
         </div> : <Navigate to='/signin' />;

@@ -2,12 +2,12 @@ import React, { useContext, useState } from 'react';
 import { Navbar, Button, Dropdown, TextInput, Avatar } from "flowbite-react";
 import { MdSearch, MdShoppingBasket } from "react-icons/md";
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { StoreContext } from '../../context/StoreContext';
+import { StoreContext } from '../context/StoreContext';
 
 const Header = () => {
-    const { getTotalCartAmount, isUserLoggedIn, setIsUserLoggedIn, user } = useContext(StoreContext);
-    const [headerValue, setHeaderValue] = useState(isUserLoggedIn ? 'Menu' : 'Home');
-    const [linkValue, setLinkValue] = useState(isUserLoggedIn ? '/menu' : '/');
+    const { getTotalCartAmount, user, logout } = useContext(StoreContext);
+    const [headerValue, setHeaderValue] = useState(user ? 'Menu' : 'Home');
+    const [linkValue, setLinkValue] = useState(user ? '/menu' : '/');
     const [showSearchInput, setShowSearchInput] = useState(false);
     const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const Header = () => {
             if (!res.ok) {
                 console.log(data.message);
             } else {
-                setIsUserLoggedIn(false);
+                logout(); // Call logout function from StoreContext
                 navigate('/');
             }
         } catch (error) {
@@ -47,7 +47,7 @@ const Header = () => {
                     <span className='px-2 py-1.5 bg-gradient-to-r from-orange-500 from-30% via-sky-500 via-50% to-emerald-500 to-90% inline-block text-transparent bg-clip-text'>Food Space</span>
                 </Link>
 
-                {isUserLoggedIn ? (
+                {user ? (
                     <>
                         <div className='flex sm:justify-between justify-end items-center w-[70%]'>
                             <div className='flex items-center md:gap-8 md:pl-[2vw]'>
@@ -117,16 +117,13 @@ const Header = () => {
                                         rounded className='w-10 h-5' />
                                 }>
                                     <Dropdown.Header className='text-center'>
-                                        {'Welcome, User'}
+                                        {`Welcome, ${user.name}`}
                                     </Dropdown.Header>
                                     <Dropdown.Divider />
-                                    {
-                                        user?.isSeller && <Link to='/dashboard'><Dropdown.Item className='text-md justify-center'>
-                                            Dashboard
-                                        </Dropdown.Item>
-                                        </Link>
-                                    }
-                                    <Dropdown.Item className='text-md justify-center' onClick={handleSignout}>
+                                    <Dropdown.Item className='text-md font-semibold justify-center' onClick={() => navigate('/dashboard')}>
+                                        Dashboard
+                                    </Dropdown.Item>
+                                    <Dropdown.Item className='text-md font-semibold justify-center' onClick={handleSignout}>
                                         Sign Out
                                     </Dropdown.Item>
                                 </Dropdown>

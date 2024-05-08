@@ -10,6 +10,8 @@ import menu_5 from './menu_5.png'
 import menu_6 from './menu_6.png'
 import menu_7 from './menu_7.png'
 import menu_8 from './menu_8.png'
+import menu_9 from './menu_9.png'
+import menu_10 from './menu_10.png'
 import food_1 from './food_1.png'
 import food_2 from './food_2.png'
 import food_3 from './food_3.png'
@@ -113,7 +115,24 @@ export const menu_list = [
     {
         menu_name: "Noodles",
         menu_image: menu_8
-    }]
+    },
+    {
+        menu_name: "Pizza",
+        menu_image: menu_9
+    },
+    {
+        menu_name: "Non Veg",
+        menu_image: menu_10
+    }
+    // {
+    //     menu_name: "Burger",
+    //     menu_image: menu_10
+    // },
+    // {
+    //     menu_name: "Street Food",
+    //     menu_image: menu_11
+    // }
+]
 
 export const food_list = [
     {

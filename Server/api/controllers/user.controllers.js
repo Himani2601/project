@@ -3,7 +3,7 @@ import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 export const signup = async (req, res, next) => {
-    const { name, username, email, password, isSeller } = req.body;
+    const { name, username, email, password, isSeller, location } = req.body;
     try {
         const user = await User.findOne({ email });
         if (user) {
@@ -11,7 +11,7 @@ export const signup = async (req, res, next) => {
         }
 
         const hashedPassword = await bcryptjs.hash(password, 12);
-        const newUserFields = { name, username, email, password: hashedPassword, isSeller };
+        const newUserFields = { name, username, email, location, password: hashedPassword, isSeller };
         const newUser = new User(newUserFields);
         await newUser.save();
         res.status(201).json({ message: 'User has been created' });

@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const { Schema } = mongoose;
+const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
     image: {
@@ -20,8 +20,14 @@ const orderSchema = new Schema({
         required: true
     },
     seller: {
-        type: Schema.Types.ObjectId,
-        ref: 'Seller'
+        type: mongoose.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: "User",
+        required: true,
     },
     total: {
         type: Number,
@@ -32,8 +38,6 @@ const orderSchema = new Schema({
         enum: ['pending', 'accepted', 'rejected', 'dispatched', 'delivered'],
         default: 'pending'
     }
-});
+})
 
-const Order = mongoose.model('Order', orderSchema);
-
-export default Order;
+export default mongoose.model("Order", orderSchema);

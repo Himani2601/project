@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const { Schema } = mongoose;
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     username: {
@@ -37,13 +37,15 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    sellingItems: [{ // Include sellingItems array by default
-        type: Schema.Types.ObjectId,
-        ref: 'Item'
+    sellingItems: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Item",
+        required: true,
     }],
     orders: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Order'
+        type: mongoose.Types.ObjectId,
+        ref: 'Order',
+        required: true
     }]
 }, { timestamps: true });
 
@@ -51,8 +53,9 @@ userSchema.pre('save', function (next) {
     if (this.isSeller) {
         // If the user is a seller, add the sellingItems field
         this.sellingItems = [{
-            type: Schema.Types.ObjectId,
-            ref: 'Item'
+            type: mongoose.Types.ObjectId,
+            ref: 'Item',
+            required: true
         }];
     } else {
         // If the user is not a seller, remove the sellingItems field

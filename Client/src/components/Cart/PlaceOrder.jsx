@@ -5,7 +5,8 @@ import { StoreContext } from '../../context/StoreContext';
 
 const PlaceOrder = () => {
     const [formData, setFormData] = useState({});
-    const { getTotalCartAmount } = useContext(StoreContext);
+    const [cartOrders, setCartOrders] = useState({});
+    const { getTotalCartAmount, cartItems, food_list, user } = useContext(StoreContext);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -15,6 +16,38 @@ const PlaceOrder = () => {
         e.preventDefault();
         console.log(formData);
     };
+
+    const handlecheckout = async () => {
+        try {
+            const orderDetails = food_list
+                .filter(item => cartItems[item._id] > 0)
+                .map(item => ({
+                    _id: item._id,
+                    image: item.image,
+                    name: item.name,
+                    price: item.price,
+                    quantity: cartItems[item._id],
+                    total: item.price * cartItems[item._id],
+                    seller: item.seller,
+                    user: user._id
+                }));
+            setCartOrders(orderDetails);
+            const res = await fetch('api/order/addtocart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(cartOrders),
+            });
+            if (res.ok) {
+                const data = await res.json();
+            }
+            else {
+                console.error('Failed to add Orders');
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+        }
+    };
+
     return (
         <div className='mt-20'>
             <div className='min-h-screen mt-10 flex md:flex-row flex-col items-center justify-center md:mx-8 md:gap-16 gap-5'>
@@ -117,7 +150,7 @@ const PlaceOrder = () => {
                     </div>
                     <div style={{ textAlign: "-webkit-center" }}>
                         <Link to='/placeorder'>
-                            <Button gradientDuoTone="purpleToPink" outline className='mt-6'>
+                            <Button gradientDuoTone="purpleToPink" outline className='mt-6' onClick={handlecheckout}>
                                 Proceed to Payment
                             </Button>
                         </Link>

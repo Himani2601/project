@@ -1,8 +1,46 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '../context/StoreContext';
 
 const MyOrders = () => {
     const { cartItems, food_list, user } = useContext(StoreContext);
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const res = await fetch('/api/order/getuserorder', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user: user._id }),
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    setOrders(data.orders);
+                } else {
+                    console.error('Failed to fetch orders');
+                }
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'pending':
+            case 'rejected':
+                return '#DC2626'; // Red color for pending and rejected
+            case 'accepted':
+            case 'delivered':
+                return '#34D399'; // Green color for accepted and delivered
+            case 'dispatched':
+                return '#3B82F6'; // Blue color for dispatched
+            default:
+                return '#000000'; // Default color
+        }
+    };
 
     return (
         <div className='min-h-screen mt-5 md:mt-0'>
@@ -16,27 +54,24 @@ const MyOrders = () => {
                     <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs font-medium text-gray-600  mt-2">Status</p>
                 </div>
                 <hr className="w-full border-2 my-3" />
-                {food_list.map((item) => {
-                    if (cartItems[item._id] > 0) {
-                        // console.log(item); for verification of sellerId is comming or not
-                        return (
-                            <React.Fragment key={item._id}>
-                                <div className="flex flex-row justify-evenly items-center mx-1 md:mx-20 text-center">
-                                    <div className='w-full md:w-1/6' style={{ textAlign: '-webkit-center' }}>
-                                        <img src={item.image} alt={item.name} className="rounded-full md:w-20 md:h-20 w-12 h-12 object-cover" />
-                                    </div>
-                                    <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">{item.name}</p>
-                                    <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">₹{item.price}</p>
-                                    <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">{cartItems[item._id]}</p>
-                                    <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">₹{item.price * cartItems[item._id]}</p>
-                                    <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-red-800 mb-1">Pending</p>
+                {orders.map((order) => {
+                    return (
+                        <React.Fragment key={order._id}>
+                            <div className="flex flex-row justify-evenly items-center mx-1 md:mx-20 text-center" key={order._id}>
+                                <div className='w-full md:w-1/6' style={{ textAlign: '-webkit-center' }}>
+                                    <img src={order.image} alt={order.name} className="rounded-full md:w-20 md:h-20 w-12 h-12 object-cover" />
                                 </div>
-                                <hr className="w-full my-3 border-2" />
-                            </React.Fragment>
-                        );
-                    }
-                })}
-
+                                <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">{order.name}</p>
+                                <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">₹{order.price}</p>
+                                <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">{order.quantity}</p>
+                                <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">₹{order.total}</p>
+                                <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-red-800 mb-1" style={{ textAlign: '-webkit-center', color: getStatusColor(order.status) }}>{order.status}</p>
+                            </div>
+                            <hr className="w-full my-3 border-2" />
+                        </React.Fragment>
+                    );
+                }
+                )}
             </div>
         </div>
     );

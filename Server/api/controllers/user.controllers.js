@@ -73,6 +73,72 @@ export const forgetPassword = async (req, res, next) => {
     }
 };
 
+export const updateProfile = async (req, res, next) => {
+    try {
+        const { name, email, username, npassword, mobileNo, location } = req.body;
+        if (req.user.id != req.params.userId) {
+            return next(errorHandler(400, 'You are not allowed to update this user'));
+        }
+
+        if (npassword) {
+            if (npassword.length < 6) {
+                return next(errorHandler(400, 'Password must be at least 6 characters'))
+            }
+            npassword = bcryptjs.hashSync(npassword, 10);
+        }
+
+        if (name && name.trim() === "") {
+            return next(errorHandler(400, 'Name should be filled'));
+        }
+
+        if (username) {
+            if (await User.findOne({ username })) {
+                return next(errorHandler(400, 'Username already exists, try a different username'));
+            }
+            if (username.length < 7 || username.length > 20) {
+                return next(errorHandler(400, 'Username must be between 7 and 20 characters'));
+            }
+            if (username.includes(' ')) {
+                return next(errorHandler(400, 'Username cannot contain spaces'));
+            }
+            if (username !== username.toLowerCase()) {
+                return next(errorHandler(400, 'Username must be lowercase'));
+            }
+            if (!username.match(/^[a-zA-Z0-9-_@#$^*]+$/)) {
+                return next(errorHandler(400, 'Username can only contain letters and numbers'));
+            }
+        }
+
+        if (mobileNo) {
+            if (mobileNo.length < 14 || mobileNo.length > 15) {
+                return next(errorHandler(400, 'Enter Valid Mobile Number'));
+            }
+        }
+
+        if (location) {
+            if (location === null || location === undefined) {
+                return next(errorHandler(400, 'Enter Valid Location'));
+            }
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(req.params.userId, {
+            $set: {
+                username,
+                email: email,
+                npassword,
+                name,
+                bio,
+                mobileNo,
+            },
+        }, { new: true });
+
+        const { password: removedPassword, ...rest } = updatedUser._doc;
+        res.status(200).json(rest);
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 
 

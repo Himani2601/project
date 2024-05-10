@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 
 export const addToCart = async (req, res, next) => {
     const orders = req.body;
-    console.log(orders);
+    // console.log(orders);
     try {
         for (const orderData of orders) {
             const { image, name, price, quantity, seller, total, user } = orderData;

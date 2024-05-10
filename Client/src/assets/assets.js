@@ -139,11 +139,10 @@ export const food_list = [
         _id: "1",
         name: "Greek salad",
         image: food_1,
-        sellerId: '609c6e98f0c49b3b84ad1c56',
         price: 840,
         description: "A refreshing Greek salad featuring crisp lettuce, juicy tomatoes, tangy olives, creamy feta cheese, and a zesty vinaigrette dressing.",
         category: "Salad",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "2",
@@ -152,7 +151,7 @@ export const food_list = [
         price: 1260,
         description: "A delightful veg salad packed with fresh cucumbers, crunchy carrots, vibrant bell peppers, and crisp lettuce, tossed in a light and flavorful dressing.",
         category: "Salad",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "3",
@@ -161,7 +160,7 @@ export const food_list = [
         price: 1120,
         description: "A unique clover salad featuring a blend of nutritious greens, earthy roasted beets, creamy goat cheese, and a balsamic glaze for a touch of sweetness.",
         category: "Salad",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "4",
@@ -170,7 +169,7 @@ export const food_list = [
         price: 1680,
         description: "Savor the flavors of tender grilled chicken breast, crisp lettuce, ripe cherry tomatoes, crunchy cucumbers, and a tangy honey mustard dressing in this delightful chicken salad.",
         category: "Salad",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "5",
@@ -179,7 +178,7 @@ export const food_list = [
         price: 980,
         description: "Indulge in these savory lasagna rolls filled with a rich and flavorful mixture of seasoned ground beef, creamy ricotta cheese, and tangy marinara sauce, baked to perfection.",
         category: "Rolls",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "6",
@@ -188,7 +187,7 @@ export const food_list = [
         price: 840,
         description: "Enjoy the fiery flavors of peri peri chicken wrapped in soft rolls, complemented by crunchy lettuce, sliced tomatoes, and a drizzle of tangy peri peri sauce.",
         category: "Rolls",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "7",
@@ -197,7 +196,7 @@ export const food_list = [
         price: 1400,
         description: "Satisfy your hunger with these hearty chicken rolls stuffed with tender shredded chicken, aromatic spices, fresh vegetables, and a creamy garlic mayo sauce.",
         category: "Rolls",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "8",
@@ -206,7 +205,7 @@ export const food_list = [
         price: 1050,
         description: "Delight in these veg rolls filled with a medley of colorful vegetables, seasoned with aromatic herbs and spices, and wrapped in a soft tortilla for a satisfying snack.",
         category: "Rolls",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "9",
@@ -215,7 +214,7 @@ export const food_list = [
         price: 980,
         description: "Indulge your sweet tooth with creamy ripple ice cream, featuring luscious ribbons of caramel swirled through rich vanilla ice cream for a decadent treat.",
         category: "Desserts",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "10",
@@ -224,7 +223,7 @@ export const food_list = [
         price: 1540,
         description: "Treat yourself to a refreshing fruit ice cream bursting with the flavors of ripe strawberries, juicy mangoes, and tangy pineapple, blended into creamy perfection.",
         category: "Desserts",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "11",
@@ -233,7 +232,7 @@ export const food_list = [
         price: 700,
         description: "Savor the nostalgia with jar ice cream, featuring layers of creamy chocolate and vanilla ice cream, crunchy cookie crumbles, and rich fudge sauce for a delightful dessert.",
         category: "Desserts",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "12",
@@ -242,7 +241,7 @@ export const food_list = [
         price: 840,
         description: "Indulge in classic vanilla ice cream, made with the finest Madagascar vanilla beans for a smooth and creamy treat that never goes out of style.",
         category: "Desserts",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "13",
@@ -251,7 +250,7 @@ export const food_list = [
         price: 840,
         description: "Sink your teeth into a delicious chicken sandwich featuring tender grilled chicken breast, crisp lettuce, ripe tomatoes, and creamy mayo, all nestled between soft slices of bread.",
         category: "Sandwich",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "14",
@@ -260,7 +259,7 @@ export const food_list = [
         price: 1260,
         description: "Enjoy a flavorful vegan sandwich filled with marinated tofu, crunchy veggies, avocado slices, and a creamy hummus spread, served on whole grain bread for a wholesome meal.",
         category: "Sandwich",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "15",
@@ -269,7 +268,7 @@ export const food_list = [
         price: 1120,
         description: "Savor the goodness of a grilled sandwich packed with melted cheese, thinly sliced ham, juicy tomatoes, and tangy mustard, grilled to perfection for a comforting snack.",
         category: "Sandwich",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "16",
@@ -278,7 +277,7 @@ export const food_list = [
         price: 1680,
         description: "Indulge in a hearty bread sandwich layered with flavorful meats, crisp lettuce, juicy tomatoes, and creamy spreads, all sandwiched between slices of freshly baked bread.",
         category: "Sandwich",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "17",
@@ -287,7 +286,7 @@ export const food_list = [
         price: 980,
         description: "Delight your taste buds with a scrumptious cupcake topped with fluffy frosting and colorful sprinkles, perfect for satisfying your sweet cravings anytime.",
         category: "Cake",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "18",
@@ -296,7 +295,7 @@ export const food_list = [
         price: 840,
         description: "Indulge guilt-free with a delectable vegan cake made with wholesome ingredients and topped with a luscious dairy-free frosting, offering a delightful treat for all.",
         category: "Cake",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "19",
@@ -305,7 +304,7 @@ export const food_list = [
         price: 1400,
         description: "Treat yourself to a decadent butterscotch cake featuring layers of moist sponge cake, creamy butterscotch frosting, and crunchy caramelized nuts for an irresistible dessert experience.",
         category: "Cake",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "20",
@@ -314,7 +313,7 @@ export const food_list = [
         price: 1050,
         description: "Enjoy a slice of heavenly cake with a variety of flavors to choose from, including rich chocolate, velvety red velvet, moist carrot, and more, perfect for any celebration.",
         category: "Cake",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "21",
@@ -323,7 +322,7 @@ export const food_list = [
         price: 980,
         description: "Savor the earthy flavors of garlic mushrooms sautéed to perfection, served with a drizzle of herb-infused olive oil and a sprinkle of Parmesan cheese for a delightful appetizer.",
         category: "Pure Veg",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "22",
@@ -332,7 +331,7 @@ export const food_list = [
         price: 1540,
         description: "Indulge in crispy fried cauliflower florets coated in a seasoned batter, served with a tangy dipping sauce for a satisfying snack that's perfect for sharing.",
         category: "Pure Veg",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "23",
@@ -341,7 +340,7 @@ export const food_list = [
         price: 700,
         description: "Savor the aromatic flavors of mix veg pulao, featuring fragrant basmati rice cooked with a colorful assortment of vegetables, aromatic spices, and herbs for a comforting meal.",
         category: "Pure Veg",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "24",
@@ -350,7 +349,7 @@ export const food_list = [
         price: 840,
         description: "Enjoy a flavorful rice zucchini dish featuring tender zucchini sautéed with aromatic spices, herbs, and cooked with fluffy basmati rice for a nutritious and satisfying meal.",
         category: "Pure Veg",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "25",
@@ -359,7 +358,7 @@ export const food_list = [
         price: 840,
         description: "Indulge in creamy cheese pasta made with al dente pasta tossed in a rich and velvety cheese sauce, sprinkled with Parmesan cheese for an irresistible comfort food classic.",
         category: "Pasta",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "26",
@@ -368,7 +367,7 @@ export const food_list = [
         price: 1260,
         description: "Savor the freshness of tomato pasta featuring tangy tomato sauce tossed with tender pasta, garlic, onions, and aromatic herbs for a simple yet satisfying Italian dish.",
         category: "Pasta",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "27",
@@ -377,7 +376,7 @@ export const food_list = [
         price: 1120,
         description: "Indulge in creamy pasta made with smooth Alfredo sauce, tender pasta, grilled chicken, and sautéed vegetables, all combined for a luxurious and satisfying meal.",
         category: "Pasta",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "28",
@@ -386,7 +385,7 @@ export const food_list = [
         price: 1680,
         description: "Enjoy hearty chicken pasta featuring succulent pieces of grilled chicken breast, tossed with al dente pasta, sun-dried tomatoes, spinach, and a creamy garlic sauce for a flavorful meal.",
         category: "Pasta",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "29",
@@ -395,7 +394,7 @@ export const food_list = [
         price: 980,
         description: "Indulge in buttery noodles tossed in a savory sauce made with butter, garlic, and herbs, creating a simple yet delicious dish that's perfect for any occasion.",
         category: "Noodles",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "30",
@@ -404,7 +403,7 @@ export const food_list = [
         price: 840,
         description: "Delight in veg noodles made with stir-fried vegetables, tender noodles, and a flavorful sauce, creating a quick and satisfying meal that's bursting with vibrant flavors.",
         category: "Noodles",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "31",
@@ -413,7 +412,7 @@ export const food_list = [
         price: 1400,
         description: "Enjoy somen noodles, a light and refreshing Japanese dish featuring thin wheat noodles served cold with a dipping sauce, garnished with fresh toppings for a delightful meal.",
         category: "Noodles",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     },
     {
         _id: "32",
@@ -422,7 +421,7 @@ export const food_list = [
         price: 1050,
         description: "Savor the flavors of cooked noodles tossed in a savory sauce with your choice of protein and vegetables, creating a customizable and satisfying noodle dish for any palate.",
         category: "Noodles",
-        seller: "6638b9d20bba92cbe32503aa"
+        seller: "663e121554ed65e56ba3d923"
     }
 ];
 

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { Button, Label, TextInput, ToggleSwitch } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
 const PlaceOrder = () => {
     const [formData, setFormData] = useState({});
     const [cartOrders, setCartOrders] = useState({});
-    const { getTotalCartAmount, cartItems, food_list, user } = useContext(StoreContext);
-
+    const { getTotalCartAmount, cartItems, emptyCart, food_list, user } = useContext(StoreContext);
+    const navigate = useNavigate();
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
     };
@@ -32,6 +32,7 @@ const PlaceOrder = () => {
                     user: user._id
                 }));
             setCartOrders(orderDetails);
+            console.log(orderDetails);
             const res = await fetch('api/order/addtocart', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -39,6 +40,8 @@ const PlaceOrder = () => {
             });
             if (res.ok) {
                 const data = await res.json();
+                emptyCart();
+                navigate('/dashboard?tab=myorders');
             }
             else {
                 console.error('Failed to add Orders');

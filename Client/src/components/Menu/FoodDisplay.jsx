@@ -3,8 +3,7 @@ import { StoreContext } from '../../context/StoreContext';
 import FoodItem from './FoodItem';
 
 const FoodDisplay = ({ category }) => {
-    const { food_list, user } = useContext(StoreContext);
-    const [itemsData, setItemsData] = useState([]);
+    const { food_list, user, setFood_List } = useContext(StoreContext);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -37,7 +36,8 @@ const FoodDisplay = ({ category }) => {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    setItemsData(data.data);
+                    setFood_List(data.data);
+                    // console.log(itemsData);
                 } else {
                     console.error('Failed to fetch items');
                 }
@@ -53,7 +53,7 @@ const FoodDisplay = ({ category }) => {
         <div className='mx-5 mb-10 md:mx-16 food-display'>
             <h2 className='mb-9 md:text-2xl font-mono font-semibold text-lg text-center'>- Top Dishes Near You -</h2>
             <div className={`flex flex-wrap ${isVisible ? 'animate-slide-in' : ''}`}>
-                {itemsData.map((item, index) => {
+                {food_list.map((item, index) => {
                     if (category === 'All' || category === item.category) {
                         return (
                             <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={'/api/images/' + item.image} />

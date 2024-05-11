@@ -83,7 +83,7 @@ const Orders = () => {
                         <React.Fragment key={order._id}>
                             <div className="flex flex-row justify-evenly items-center mx-1 md:mx-20 text-center" key={order._id}>
                                 <div className='w-full md:w-1/6' style={{ textAlign: '-webkit-center' }}>
-                                    <img src={order.image} alt={order.name} className="rounded-full md:w-20 md:h-20 w-12 h-12 object-cover" />
+                                    <img src={'/api/images/' + order.image} alt={order.name} className="rounded-full md:w-20 md:h-20 w-12 h-12 object-cover" />
                                 </div>
                                 <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">{order.name}</p>
                                 <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">₹{order.price}</p>

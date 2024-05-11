@@ -25,7 +25,7 @@ const Cart = () => {
                             <React.Fragment key={item._id}>
                                 <div className="flex flex-row justify-evenly items-center mx-1 md:mx-20 text-center">
                                     <div className='w-full md:w-1/6' style={{ textAlign: '-webkit-center' }}>
-                                        <img src={item.image} alt={item.name} className="rounded-full md:w-20 md:h-20 w-12 h-12 object-cover" />
+                                        <img src={'/api/images/' + item.image} alt={item.name} className="rounded-full md:w-20 md:h-20 w-12 h-12 object-cover" />
                                     </div>
                                     <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">{item.name}</p>
                                     <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">₹{item.price}</p>

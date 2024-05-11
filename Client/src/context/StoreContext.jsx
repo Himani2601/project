@@ -6,6 +6,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [selectedItem, setSelectedItem] = useState(null);
+    const [food_list, setFood_List] = useState([]);
     const [user, setUser] = useState(() => {
         // Retrieve user information from localStorage upon component initialization
         const storedUser = localStorage.getItem("user");
@@ -63,6 +64,7 @@ const StoreContextProvider = (props) => {
         cartItems,
         updateUser,
         addToCart,
+        setFood_List,
         selectedItem,
         setSelectedItem,
         setCartItems,

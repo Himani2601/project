@@ -1,18 +1,59 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Dropdown, Label, TextInput, Textarea, Alert, DropdownDivider } from 'flowbite-react';
 import { IoIosCloudUpload } from "react-icons/io";
-import { menu_list } from '../assets/assets'
+import { menu_list } from '../assets/assets';
+import { StoreContext } from '../context/StoreContext';
 
 const AddItem = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [formData, setFormData] = useState({});
+    const [image, setImage] = useState(null);
 
-    const handleChange = () => { };
+    const { user } = useContext(StoreContext);
 
-    const handleSubmit = () => { };
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImage(reader.result);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleSubmit = async () => {
+        setFormData({ ...formData, image: image });
+        console.log(formData);
+        try {
+            const res = fetch(`/api/item/additem/${user._id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            if (res.ok) {
+                const data = await res.json();
+                emptyCart();
+                navigate('/dashboard?tab=ViewItems');
+            }
+            else {
+                setErrorMessage('Failed to add Item');
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     const handleDropdownItemClick = (category) => {
         setSelectedCategory(category);
+        setFormData({ ...formData, category: category });
     };
 
     return (
@@ -22,7 +63,18 @@ const AddItem = () => {
                     <span className='px-2 py-1 text-black rounded-lg inline-block font-bold text-5xl md:text-4xl text-center mb-5' style={{ fontVariant: 'petite-caps' }}>Add Item</span>
                     <div className='flex flex-col justify-center items-center gap-2'>
                         <Label value='Upload Image' className='text-md' />
-                        <IoIosCloudUpload className='w-20 h-16 cursor-pointer' />
+                        <label htmlFor='imageInput'>
+                            {
+                                image ? <img src={image} alt='' className='w-36 h-24 rounded-lg' /> : <IoIosCloudUpload className='w-20 h-16 cursor-pointer' />
+                            }
+                        </label>
+                        <input
+                            type='file'
+                            id='imageInput'
+                            accept='image/*'
+                            style={{ display: 'none' }}
+                            onChange={handleImageChange}
+                        />
                     </div>
                     <div className='gap-2'>
                         <Label value='Product Name' />
@@ -53,7 +105,7 @@ const AddItem = () => {
                                 value={selectedCategory || ''}
                                 id='category'
                                 onChange={handleChange}
-                                className='mt-2 cursor-pointer md:w-[23vw] w-[85vw]'
+                                className='mt-2 cursor-pointer md:w-[24vw] w-[85vw]'
                                 readOnly
                             />
                         }>

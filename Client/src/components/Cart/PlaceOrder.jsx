@@ -32,19 +32,20 @@ const PlaceOrder = () => {
                     user: user._id
                 }));
             setCartOrders(orderDetails);
-            console.log(orderDetails);
-            const res = await fetch('api/order/addtocart', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(cartOrders),
-            });
-            if (res.ok) {
-                const data = await res.json();
-                emptyCart();
-                navigate('/dashboard?tab=myorders');
-            }
-            else {
-                console.error('Failed to add Orders');
+            if (cartOrders.length > 0) {
+                const res = await fetch('api/order/addtocart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(cartOrders),
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    emptyCart();
+                    navigate('/dashboard?tab=myorders');
+                }
+                else {
+                    console.error('Failed to add Orders');
+                }
             }
         } catch (error) {
             console.error('Error placing order:', error);
@@ -81,7 +82,7 @@ const PlaceOrder = () => {
                             <div className='flex flex-col w-[50%] gap-2'>
                                 <Label value='Plot No.' />
                                 <TextInput
-                                    type='text'
+                                    type='number'
                                     placeholder='e.g 0000'
                                     id='plot_no'
                                     onChange={handleChange}
@@ -118,11 +119,21 @@ const PlaceOrder = () => {
                             </div>
                         </div>
                         <div>
+                            <Label value='Pincode' />
+                            <TextInput
+                                type='number'
+                                placeholder='e.g. 425001'
+                                id='pincode'
+                                onChange={handleChange}
+                                className='mt-2'
+                            />
+                        </div>
+                        <div>
                             <Label value='Mobile No.' />
                             <TextInput
                                 type='text'
                                 placeholder='+91-0000000000'
-                                id='mobile_no'
+                                id='phone'
                                 onChange={handleChange}
                                 className='mt-2'
                             />

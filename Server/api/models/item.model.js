@@ -23,10 +23,10 @@ const itemSchema = new Schema({
         type: String,
         required: true
     },
-    sellerId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Seller',
-        required: true
+    seller: {
+        type: mongoose.Types.ObjectId,
+        ref: "User",
+        required: true,
     }
 });
 

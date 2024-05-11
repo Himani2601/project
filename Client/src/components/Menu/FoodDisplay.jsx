@@ -3,7 +3,8 @@ import { StoreContext } from '../../context/StoreContext';
 import FoodItem from './FoodItem';
 
 const FoodDisplay = ({ category }) => {
-    const { food_list } = useContext(StoreContext);
+    const { food_list, user } = useContext(StoreContext);
+    const [itemsData, setItemsData] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -24,14 +25,38 @@ const FoodDisplay = ({ category }) => {
         };
     }, []);
 
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const response = await fetch('/api/item/getallitems', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ location: user.location })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setItemsData(data.data);
+                } else {
+                    console.error('Failed to fetch items');
+                }
+            } catch (error) {
+                console.error('Error fetching items:', error);
+            }
+        };
+
+        fetchItems();
+    }, [user.location]);
+
     return (
         <div className='mx-5 mb-10 md:mx-16 food-display'>
             <h2 className='mb-9 md:text-2xl font-mono font-semibold text-lg text-center'>- Top Dishes Near You -</h2>
             <div className={`flex flex-wrap ${isVisible ? 'animate-slide-in' : ''}`}>
-                {food_list.map((item, index) => {
+                {itemsData.map((item, index) => {
                     if (category === 'All' || category === item.category) {
                         return (
-                            <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} />
+                            <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={'/api/images/' + item.image} />
                         )
                     }
                 })}

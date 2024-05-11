@@ -37,7 +37,7 @@ const Dashboard = () => {
             case 'ViewItems':
                 return <ViewItems />;
             default:
-                return null;
+                return <Profile />;
         }
     };
 

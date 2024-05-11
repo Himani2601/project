@@ -6,12 +6,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 const Profile = () => {
     const { user, updateUser, deleteUser } = useContext(StoreContext);
     const [formData, setFormData] = useState({
-        name: user.name,
-        email: user.email,
-        location: user.location,
-        username: user.username,
-        mobileNo: user.mobileNo || '',
-        npassword: '' // Assuming this is the new password field
+        npassword: ''
     });
     const [deleteShowModal, setdeleteShowModal] = useState(false);
 
@@ -25,6 +20,7 @@ const Profile = () => {
     };
 
     const handleProfileUpdate = async () => {
+        console.log(formData);
         try {
             const res = await fetch(`/api/user/update/${user._id}`, {
                 method: 'PUT',
@@ -42,7 +38,7 @@ const Profile = () => {
         } catch (error) {
             console.error('Network Error:', error);
         }
-    };
+    }
 
     const handleDeleteUser = () => {
         deleteUser();
@@ -56,12 +52,12 @@ const Profile = () => {
                     <div className="w-28 h-28 self-center cursor-pointer shadow-md overflow-hidden rounded-full">
                         <img src={user.profilePicture} alt='user' className='rounded-full w-full h-full object-cover border-8 border-[lightgray]' />
                     </div>
-                    <TextInput type='text' id='name' placeholder='Name' value={formData.name} onChange={handleChange} className='w-full' />
-                    <TextInput type='email' id='email' placeholder='Email' value={formData.email} onChange={handleChange} className='w-full' />
-                    <TextInput type='text' id='location' placeholder='Location' value={formData.location} onChange={handleChange} className='w-full' />
-                    <TextInput type='text' id='username' placeholder='Username' value={formData.username} onChange={handleChange} className='w-full' />
-                    <TextInput type='text' id='mobileNo' placeholder='Mobile No' value={formData.mobileNo} onChange={handleChange} className='w-full' />
-                    <TextInput type='password' id='npassword' placeholder='New Password' value={formData.npassword} onChange={handleChange} className='w-full' />
+                    <TextInput type='text' id='name' placeholder='Name' defaultValue={user.name} onChange={handleChange} className='w-full' />
+                    <TextInput type='email' id='email' placeholder='Email' defaultValue={user.email} onChange={handleChange} className='w-full' />
+                    <TextInput type='text' id='location' placeholder='Location' defaultValue={user.location} onChange={handleChange} className='w-full' />
+                    <TextInput type='text' id='username' placeholder='Username' defaultValue={user.username} onChange={handleChange} className='w-full' />
+                    <TextInput type='text' id='mobileNo' placeholder='Mobile No' defaultValue={user.mobileNo} onChange={handleChange} className='w-full' />
+                    <TextInput type='password' id='npassword' placeholder='New Password' onChange={handleChange} className='w-full' />
                     <Button gradientDuoTone="pinkToOrange" outline type='submit' className='w-full'>
                         Update
                     </Button>

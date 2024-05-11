@@ -17,6 +17,10 @@ const StoreContextProvider = (props) => {
         localStorage.setItem("user", JSON.stringify(user));
     }, [user]);
 
+    const updateUser = (user) => {
+        setUser(user);
+    }
+
     const addToCart = (itemId) => {
         if (!cartItems[itemId]) {
             setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
@@ -51,12 +55,13 @@ const StoreContextProvider = (props) => {
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem("user"); // Remove user information from localStorage upon logout
+        localStorage.removeItem("user");
     };
 
     const contextValue = {
         food_list,
         cartItems,
+        updateUser,
         addToCart,
         selectedItem,
         setSelectedItem,

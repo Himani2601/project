@@ -28,7 +28,7 @@ const SignIn = () => {
             });
             const data = await res.json();
             if (data.success === false) {
-                return setErrorMessage(data.message);
+                return setErrorMessage("Check Credentitals");
             }
             if (res.ok) {
                 // Set user details in context upon successful login

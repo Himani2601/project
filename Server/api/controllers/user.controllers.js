@@ -31,16 +31,16 @@ export const signout = async (req, res, next) => {
 export const signin = async (req, res, next) => {
     const { username, password } = req.body;
     if (!username || !password || username === "" || password === "") {
-        next(errorHandler(400, 'All Fileds are Required'));
+        return res.status(404).json({ error: 'All Fileds are Required' });
     }
     try {
         const validUser = await User.findOne({ username });
         if (!validUser) {
-            return next(errorHandler(404, 'Wrong Credentials.. check username or password is correct or not'));
+            return res.status(404).json({ error: 'Wrong Credentials.. check username or password is correct or not' });
         }
         const validPassword = bcryptjs.compareSync(password, validUser.password);
         if (!validPassword) {
-            return next(errorHandler(404, 'Wrong Credentials...  check username or password is correct or not'));
+            return res.status(404).json({ error: 'Wrong Credentials...  check username or password is correct or not' });
         }
         const token = jwt.sign({ id: validUser._id, username: validUser.username, isAdmin: validUser.isAdmin }, process.env.JWT_SECRET);
         const { password: pass, ...rest } = validUser._doc;
@@ -77,59 +77,50 @@ export const updateProfile = async (req, res, next) => {
     try {
         const { name, email, username, npassword, mobileNo, location } = req.body;
         if (req.user.id != req.params.userId) {
-            return next(errorHandler(400, 'You are not allowed to update this user'));
+            return res.status(400).json({ error: 'You are not allowed to update this user' });
         }
 
         if (npassword) {
             if (npassword.length < 6) {
-                return next(errorHandler(400, 'Password must be at least 6 characters'))
+                return res.status(400).json({ error: 'Password must be at least 6 characters' });
             }
             npassword = bcryptjs.hashSync(npassword, 10);
         }
 
         if (name && name.trim() === "") {
-            return next(errorHandler(400, 'Name should be filled'));
+            return res.status(400).json({ error: 'Name should be filled' });
         }
 
         if (username) {
             if (await User.findOne({ username })) {
-                return next(errorHandler(400, 'Username already exists, try a different username'));
+                return res.status(400).json({ error: 'Username already exists, try a different username' });
             }
             if (username.length < 7 || username.length > 20) {
-                return next(errorHandler(400, 'Username must be between 7 and 20 characters'));
+                return res.status(400).json({ error: 'Username must be between 7 and 20 characters' });
             }
             if (username.includes(' ')) {
-                return next(errorHandler(400, 'Username cannot contain spaces'));
+                return res.status(400).json({ error: 'Username cannot contain spaces' });
             }
             if (username !== username.toLowerCase()) {
-                return next(errorHandler(400, 'Username must be lowercase'));
+                return res.status(400).json({ error: 'Username must be lowercase' });
             }
             if (!username.match(/^[a-zA-Z0-9-_@#$^*]+$/)) {
-                return next(errorHandler(400, 'Username can only contain letters and numbers'));
+                return res.status(400).json({ error: 'Username can only contain letters and numbers' });
             }
         }
 
         if (mobileNo) {
             if (mobileNo.length < 14 || mobileNo.length > 15) {
-                return next(errorHandler(400, 'Enter Valid Mobile Number'));
+                return res.status(400).json({ error: 'Enter Valid Mobile Number' });
             }
         }
 
-        if (location) {
-            if (location === null || location === undefined) {
-                return next(errorHandler(400, 'Enter Valid Location'));
-            }
+        if (!location) {
+            return res.status(400).json({ error: 'Enter Valid Location' });
         }
 
         const updatedUser = await User.findByIdAndUpdate(req.params.userId, {
-            $set: {
-                username,
-                email: email,
-                npassword,
-                name,
-                bio,
-                mobileNo,
-            },
+            $set: { username, email, npassword, name, mobileNo, location },
         }, { new: true });
 
         const { password: removedPassword, ...rest } = updatedUser._doc;
@@ -138,6 +129,7 @@ export const updateProfile = async (req, res, next) => {
         next(error)
     }
 }
+
 
 
 

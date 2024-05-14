@@ -42,7 +42,7 @@ const Dashboard = () => {
     };
 
     return (
-        <div className='min-h-screen mt-16 flex flex-row justify-center items-center'>
+        <div className='min-h-screen mt-16 flex flex-row justify-center'>
             <div className={`md:w-[20%] w-full relative ${selectedItem ? 'hidden' : ''} md:block`}>
                 <Sidebar className='w-full h-[100vh]' style={{ boxShadow: '0px 0px 10px 0px #aaaaaa' }}>
                     <Sidebar.Items>

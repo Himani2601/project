@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from "react";
-import { food_list } from "../assets/assets";
 
 export const StoreContext = createContext(null);
 
@@ -7,6 +6,7 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [selectedItem, setSelectedItem] = useState(null);
     const [food_list, setFood_List] = useState([]);
+    const [search, setSearch] = useState('');
     const [user, setUser] = useState(() => {
         // Retrieve user information from localStorage upon component initialization
         const storedUser = localStorage.getItem("user");
@@ -63,6 +63,8 @@ const StoreContextProvider = (props) => {
         food_list,
         cartItems,
         updateUser,
+        search,
+        setSearch,
         addToCart,
         setFood_List,
         selectedItem,

@@ -57,6 +57,10 @@ export const updateOrderStatus = async (req, res, next) => {
         if (req.user.id != req.params.userId) {
             return res.status(400).json({ success: false, message: 'You are not allowed to update this user' });
         }
+        const seller = await User.findById(req.params.userId);
+        if (!seller || !seller.isSeller) {
+            return res.status(400).json({ success: false, message: 'You are not allowed to update this order' });
+        }
         const updatedOrder = await Order.findByIdAndUpdate(orderId, { $set: { status }, }, { new: true });
 
         if (!updatedOrder) {

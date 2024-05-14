@@ -22,7 +22,7 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
-        if (!formData.username || !formData.email || !formData.password || !formData.name) {
+        if (!formData.username || !formData.email || !formData.password || !formData.name || !formData.location) {
             return setErrorMessage('Please fill out all fields..');
         }
         try {

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Navbar, Button, Dropdown, TextInput, Avatar } from "flowbite-react";
-import { MdSearch, MdShoppingBasket } from "react-icons/md";
+import { HiOutlineShoppingCart, HiSearch } from "react-icons/hi";
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../context/StoreContext';
 
@@ -62,7 +62,7 @@ const Header = () => {
                                         <TextInput
                                             type="text"
                                             placeholder="Search Items.."
-                                            icon={MdSearch}
+                                            icon={HiSearch}
                                             className="border-b my-1 block sm:hidden"
                                             style={{ height: "5vh", outline: "none" }}
                                         />
@@ -72,7 +72,7 @@ const Header = () => {
                                     <TextInput
                                         type="text"
                                         placeholder="Search Items.."
-                                        icon={MdSearch}
+                                        icon={HiSearch}
                                         className="border-b hidden sm:block w-[25vw]"
                                         style={{ height: "5.5vh", outline: "none" }}
                                     />
@@ -82,7 +82,7 @@ const Header = () => {
                                     className={({ isActive }) => `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-black" : "text-gray-700"} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent md:border-0 hover:text-teal-600 lg:p-0 font-semibold hidden sm:block`}
                                 >
                                     <div className='flex gap-2 items-center relative'>
-                                        Cart <MdShoppingBasket className='w-7 h-7' />
+                                        Cart <HiOutlineShoppingCart className='w-7 h-7' />
                                         {getTotalCartAmount() !== 0 && <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>}
                                     </div>
 
@@ -104,7 +104,7 @@ const Header = () => {
                                             Search Item
                                         </Dropdown.Item>
                                         <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Cart', '/cart')}>
-                                            Cart
+                                            Cart {<HiOutlineShoppingCart />}
                                         </Dropdown.Item>
                                     </Dropdown>
                                 </div>

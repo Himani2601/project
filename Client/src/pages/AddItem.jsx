@@ -6,14 +6,18 @@ import { StoreContext } from '../context/StoreContext';
 
 const AddItem = () => {
     const [errorMessage, setErrorMessage] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState([]);
     const [formData, setFormData] = useState({});
     const [image, setImage] = useState(null);
 
     const { user } = useContext(StoreContext);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.id]: e.target.value });
+        if (e.target.id === 'category') {
+            setSelectedCategory(e.target.value.split(',').map(cat => cat.trim()));
+        } else {
+            setFormData({ ...formData, [e.target.id]: e.target.value });
+        }
     };
 
     const handleImageChange = (event) => {
@@ -30,8 +34,9 @@ const AddItem = () => {
     };
 
     const handleSubmit = async () => {
-        setFormData({ ...formData, image: image });
-        console.log(formData);
+        const updatedFormData = { ...formData, image: image, category: selectedCategory, seller: user._id };
+        setFormData(updatedFormData);
+        console.log(updatedFormData);
         try {
             const res = fetch(`/api/item/additem/${user._id}`, {
                 method: 'POST',
@@ -52,13 +57,17 @@ const AddItem = () => {
     };
 
     const handleDropdownItemClick = (category) => {
-        setSelectedCategory(category);
-        setFormData({ ...formData, category: category });
+        const isSelected = selectedCategory.includes(category);
+        if (isSelected) {
+            setSelectedCategory(selectedCategory.filter(cat => cat !== category));
+        } else {
+            setSelectedCategory([...selectedCategory, category]);
+        }
     };
 
     return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
-            <div className='md:w-[30%] w-[85%] mb-10'>
+            <div className='md:w-[40%] w-[85%] mb-10'>
                 <form className='flex flex-col gap-4'>
                     <span className='px-2 py-1 text-black rounded-lg inline-block font-bold text-5xl md:text-4xl text-center mb-5' style={{ fontVariant: 'petite-caps' }}>Add Item</span>
                     <div className='flex flex-col justify-center items-center gap-2'>
@@ -102,10 +111,10 @@ const AddItem = () => {
                             <TextInput
                                 type='text'
                                 placeholder='Select Category'
-                                value={selectedCategory || ''}
+                                value={selectedCategory.join(', ')}
                                 id='category'
                                 onChange={handleChange}
-                                className='mt-2 cursor-pointer md:w-[24vw] w-[85vw]'
+                                className='mt-2 cursor-pointer md:w-[31.5vw] w-[85vw]'
                                 readOnly
                             />
                         }>
@@ -117,7 +126,7 @@ const AddItem = () => {
                                             onClick={() => handleDropdownItemClick(menuItem.menu_name)}>
                                             {menuItem.menu_name}
                                         </Dropdown.Item>
-                                        {index !== menu_list.length - 1 && <DropdownDivider />} {/* Adding divider except for the last item */}
+                                        {index !== menu_list.length - 1 && <DropdownDivider />}
                                     </React.Fragment>
                                 ))}
                             </div>

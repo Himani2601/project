@@ -2,7 +2,11 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const addressSchema = new Schema({
+const deliverySchema = new Schema({
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order',
+    }],
     name: {
         type: String,
         required: true
@@ -37,6 +41,6 @@ const addressSchema = new Schema({
     }
 })
 
-const Address = mongoose.model('Address', addressSchema);
+const Delivery = mongoose.model('Delivery', deliverySchema);
 
-export default Address;
+export default Delivery;

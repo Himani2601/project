@@ -1,14 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { StoreContext } from '../context/StoreContext';
-import { Avatar, Button, Modal, TextInput } from 'flowbite-react';
+import { Button, Modal, TextInput } from 'flowbite-react';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
-    const { user, updateUser, deleteUser } = useContext(StoreContext);
+    const { user, updateUser } = useContext(StoreContext);
     const [formData, setFormData] = useState({
         npassword: ''
     });
     const [deleteShowModal, setdeleteShowModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -40,8 +42,24 @@ const Profile = () => {
         }
     }
 
-    const handleDeleteUser = () => {
-        deleteUser();
+    const handleDeleteUser = async () => {
+        setdeleteShowModal(false);
+        try {
+            const res = await fetch(`/api/user/deleteprofile/${user._id}`, {
+                method: 'DELETE',
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                console.log("can't delete profile")
+            } else {
+                localStorage.removeItem('user');
+                localStorage.removeItem('token');
+                updateUser(null);
+                navigate('/signin');
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (

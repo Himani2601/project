@@ -1,6 +1,9 @@
 import User from '../models/user.model.js';
+import Item from '../models/item.model.js';
+import Order from "../models/order.model.js";
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import fs from 'fs'
 
 export const signup = async (req, res, next) => {
     const { name, username, email, password, isSeller, location } = req.body;
@@ -127,6 +130,48 @@ export const updateProfile = async (req, res, next) => {
         res.status(200).json(rest);
     } catch (error) {
         next(error)
+    }
+}
+
+export const deleteUser = async (req, res, next) => {
+    if (req.user.id !== req.params.userId) {
+        return res.status(404).json('You are not allowed to delete this user');
+    }
+    try {
+        const user = await User.findById(req.params.userId);
+        if (!user) {
+            return res.status(404).json('User not found');
+        }
+        if (user.isSeller) {
+            const items = await Item.find({ seller: req.params.userId });
+            for (let item of items) {
+                fs.unlink(`images/${item.image}`, (err) => {
+                    if (err) {
+                        console.error('Error deleting image file:', err);
+                    }
+                });
+                await Item.findByIdAndDelete(item.id)
+            }
+            const orders = await Order.find({ seller: req.params.userId })
+            for (let order of orders) {
+                const user = await User.findById(order.user);
+                user.orders.pull(order._id);
+                await user.save();
+                await Order.findByIdAndDelete(order._id);
+            }
+        } else {
+            const orders = await Order.find({ user: req.params.userId })
+            for (let order of orders) {
+                const seller = await User.findById(order.seller);
+                seller.orders.pull(order._id);
+                await seller.save();
+                await Order.findByIdAndDelete(order._id);
+            }
+        }
+        await User.findByIdAndDelete(req.params.userId);
+        res.status(200).json('User has been deleted');
+    } catch (error) {
+        next(error);
     }
 }
 

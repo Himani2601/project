@@ -36,7 +36,6 @@ export const getAllItems = async (req, res, next) => {
 
 export const getItems = async (req, res, next) => {
     const userId = req.params.userId;
-    console.log(userId)
     try {
         const items = await Item.find({ seller: userId });
         res.status(200).json({ success: true, items });

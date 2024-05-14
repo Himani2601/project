@@ -54,7 +54,7 @@ const FoodDisplay = ({ category }) => {
             <h2 className='mb-9 md:text-2xl font-mono font-semibold text-lg text-center'>- Top Dishes Near You -</h2>
             <div className={`flex flex-wrap ${isVisible ? 'animate-slide-in' : ''}`}>
                 {food_list.map((item, index) => {
-                    if (category === 'All' || category === item.category) {
+                    if (category === 'All' || item.category.includes(category)) {
                         return (
                             <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={'/api/images/' + item.image} />
                         )

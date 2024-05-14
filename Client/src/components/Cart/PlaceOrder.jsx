@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Button, Label, TextInput, ToggleSwitch } from 'flowbite-react';
+import { Button, Label, TextInput } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
@@ -7,18 +7,31 @@ const PlaceOrder = () => {
     const [formData, setFormData] = useState({});
     const [cartOrders, setCartOrders] = useState({});
     const { getTotalCartAmount, cartItems, emptyCart, food_list, user } = useContext(StoreContext);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
+    const handleDropdownItemClick = (category) => {
+        setSelectedCategory(category);
+        setFormData({ ...formData, category: category });
     };
 
-    const handlecheckout = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
+            const resDelivery = await fetch('/api/delivery/adddelivery', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...formData, userId: user._id }),
+            });
+
+            if (!resDelivery.ok) {
+                throw new Error('Failed to add Delivery Information');
+            }
             const orderDetails = food_list
                 .filter(item => cartItems[item._id] > 0)
                 .map(item => ({
@@ -138,6 +151,40 @@ const PlaceOrder = () => {
                                 className='mt-2'
                             />
                         </div>
+                        <div className='gap-2'>
+                            <Label value='Product Category' />
+                            <Dropdown arrowIcon={false} inline label={
+                                <TextInput
+                                    type='text'
+                                    placeholder='Select Payment Method'
+                                    defaultValue={selectedCategory || ''}
+                                    id='payment'
+                                    className='mt-2 cursor-pointer md:w-[28vw] w-[85vw]'
+                                    readOnly
+                                />
+                            }>
+                                <div className="max-h-60 overflow-y-auto">
+                                    <Dropdown.Item
+                                        className='text-md justify-center'
+                                        onClick={() => handleDropdownItemClick('Online Payment')}
+                                    >
+                                        Online Payment
+                                    </Dropdown.Item>
+                                    <DropdownDivider />
+                                    <Dropdown.Item
+                                        className='text-md justify-center'
+                                        onClick={() => handleDropdownItemClick('Cash On Delivery')}
+                                    >
+                                        Cash On Delivery
+                                    </Dropdown.Item>
+                                </div>
+                            </Dropdown>
+                        </div>
+                        {errorMessage && (
+                            <Alert className="mt-4" color="red">
+                                {errorMessage}
+                            </Alert>
+                        )}
                     </form>
                 </div>
                 <div className='md:w-[30%] w-[80%] mb-10'>
@@ -164,7 +211,7 @@ const PlaceOrder = () => {
                     </div>
                     <div style={{ textAlign: "-webkit-center" }}>
                         <Link to='/placeorder'>
-                            <Button gradientDuoTone="purpleToPink" outline className='mt-6' onClick={handlecheckout}>
+                            <Button gradientDuoTone="purpleToPink" outline className='mt-6' onClick={handleSubmit}>
                                 Proceed to Payment
                             </Button>
                         </Link>

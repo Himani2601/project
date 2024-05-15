@@ -8,10 +8,9 @@ const MyOrders = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await fetch('/api/order/getuserorder', {
-                    method: 'POST',
+                const res = await fetch(`/api/order/getuserorder/${user._id}`, {
+                    method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ user: user._id }),
                 });
                 if (res.ok) {
                     const data = await res.json();

@@ -5,8 +5,8 @@ import { verifyToken } from '../utils/VerifyUser.js';
 const router = express.Router();
 
 router.post('/addtocart', addToCart);
-router.post('/getorder', verifyToken, getOrders);
-router.post('/getuserorder', verifyToken, getUserOrders);
+router.get('/getorder/:userId', verifyToken, getOrders);
+router.get('/getuserorder/:userId', verifyToken, getUserOrders);
 router.put('/updatestatus/:userId', verifyToken, updateOrderStatus);
 
 export default router;

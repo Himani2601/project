@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 
 export const addToCart = async (req, res, next) => {
     const orders = req.body;
-    // console.log(orders);
+    const totalorders = [];
     try {
         for (const orderData of orders) {
             const { image, name, price, quantity, seller, total, user } = orderData;
@@ -24,17 +24,17 @@ export const addToCart = async (req, res, next) => {
             await sellerDoc.save();
             userrDoc.orders.push(savedOrder);
             await userrDoc.save();
+            totalorders.push(savedOrder);
         }
-        res.status(201).json({ success: true, message: 'Items added to cart successfully' });
+        res.status(201).json({ success: true, message: 'Items added to cart successfully', data: totalorders });
     } catch (error) {
         next(error);
     }
 };
 
 export const getOrders = async (req, res, next) => {
-    const { user } = req.body;
     try {
-        const orders = await Order.find({ seller: user });
+        const orders = await Order.find({ seller: req.params.userId });
         res.status(200).json({ success: true, orders });
     } catch (error) {
         next(error);
@@ -44,7 +44,7 @@ export const getOrders = async (req, res, next) => {
 export const getUserOrders = async (req, res, next) => {
     const { user } = req.body;
     try {
-        const orders = await Order.find({ user: user });
+        const orders = await Order.find({ user: req.params.userId });
         res.status(200).json({ success: true, orders });
     } catch (error) {
         next(error);

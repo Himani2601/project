@@ -38,6 +38,10 @@ const deliverySchema = new Schema({
     phone: {
         type: String,
         required: true
+    },
+    payment: {
+        type: String,
+        required: true
     }
 })
 

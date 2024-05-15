@@ -33,6 +33,10 @@ const orderSchema = new Schema({
         type: Number,
         required: true
     },
+    delivery: {
+        type: mongoose.Types.ObjectId,
+        ref: "Delivery"
+    },
     status: {
         type: String,
         enum: ['pending', 'accepted', 'rejected', 'dispatched', 'delivered'],

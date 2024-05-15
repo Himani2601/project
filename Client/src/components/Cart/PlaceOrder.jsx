@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { Button, Label, TextInput } from 'flowbite-react';
+import { Button, Dropdown, DropdownDivider, Label, TextInput } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
 const PlaceOrder = () => {
     const [formData, setFormData] = useState({});
-    const [cartOrders, setCartOrders] = useState({});
     const { getTotalCartAmount, cartItems, emptyCart, food_list, user } = useContext(StoreContext);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -22,48 +21,49 @@ const PlaceOrder = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const orderDetails = food_list
+            .filter(item => cartItems[item._id] > 0)
+            .map(item => ({
+                _id: item._id,
+                image: item.image,
+                name: item.name,
+                price: item.price,
+                quantity: cartItems[item._id],
+                total: item.price * cartItems[item._id],
+                seller: item.seller,
+                user: user._id
+            }));
         try {
-            const resDelivery = await fetch('/api/delivery/adddelivery', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...formData, userId: user._id }),
-            });
-
-            if (!resDelivery.ok) {
-                throw new Error('Failed to add Delivery Information');
-            }
-            const orderDetails = food_list
-                .filter(item => cartItems[item._id] > 0)
-                .map(item => ({
-                    _id: item._id,
-                    image: item.image,
-                    name: item.name,
-                    price: item.price,
-                    quantity: cartItems[item._id],
-                    total: item.price * cartItems[item._id],
-                    seller: item.seller,
-                    user: user._id
-                }));
-            setCartOrders(orderDetails);
-            if (cartOrders.length > 0) {
-                const res = await fetch('api/order/addtocart', {
+            if (orderDetails.length > 0) {
+                const resOrder = await fetch('api/order/addtocart', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(cartOrders),
+                    body: JSON.stringify(orderDetails),
                 });
-                if (res.ok) {
-                    const data = await res.json();
+
+                if (!resOrder.ok) {
+                    throw new Error('Failed to add Orders');
+                }
+
+                const data = await resOrder.json();
+                if (data.data && data.data.length > 0) {
+                    const resDelivery = await fetch('/api/delivery/adddelivery', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ ...formData, orders: data.data }),
+                    });
+                    if (!resDelivery.ok) {
+                        throw new Error('Failed to add Delivery Information');
+                    }
                     emptyCart();
                     navigate('/dashboard?tab=myorders');
-                }
-                else {
-                    console.error('Failed to add Orders');
                 }
             }
         } catch (error) {
             console.error('Error placing order:', error);
         }
     };
+
 
     return (
         <div className='mt-20'>

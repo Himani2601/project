@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '../../context/StoreContext';
-import { Dropdown, DropdownDivider } from 'flowbite-react';
+import { Dropdown, DropdownDivider, Modal } from 'flowbite-react';
 
 const Orders = () => {
     const { user } = useContext(StoreContext);
     const [orders, setOrders] = useState([]);
+    const [address, setAddress] = useState([]);
+    const [deliveryId, setDeliveryId] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await fetch('/api/order/getorder', {
-                    method: 'POST',
+                const res = await fetch(`/api/order/getorder/${user._id}`, {
+                    method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ user: user._id }),
                 });
                 if (res.ok) {
                     const data = await res.json();
@@ -28,6 +30,23 @@ const Orders = () => {
         fetchOrders();
     }, []);
 
+    const handleClick = async (deliveryId) => {
+        try {
+            const res = await fetch(`/api/delivery/getaddress/${deliveryId}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setAddress(data.delivery);
+                setShowModal(true);
+            } else {
+                console.error('Failed to fetch address');
+            }
+        } catch (error) {
+            console.error('Error fetching address:', error);
+        }
+    };
     const handleStatusChange = async (orderId, newStatus) => {
         try {
             const res = await fetch(`/api/order/updatestatus/${user._id}`, {
@@ -81,7 +100,7 @@ const Orders = () => {
                 {orders.map((order) => {
                     return (
                         <React.Fragment key={order._id}>
-                            <div className="flex flex-row justify-evenly items-center mx-1 md:mx-20 text-center" key={order._id}>
+                            <div className="flex flex-row justify-evenly items-center mx-1 md:mx-20 text-center cursor-pointer" key={order._id} onClick={() => handleClick(order.delivery)}>
                                 <div className='w-full md:w-1/6' style={{ textAlign: '-webkit-center' }}>
                                     <img src={'/api/images/' + order.image} alt={order.name} className="rounded-full md:w-20 md:h-20 w-12 h-12 object-cover" />
                                 </div>
@@ -109,6 +128,23 @@ const Orders = () => {
                         </React.Fragment>
                     );
                 })}
+                <Modal show={showModal} onClose={() => setShowModal(false)} popup size='md'>
+                    <Modal.Header />
+                    <Modal.Body>
+                        <div className="text-center">
+                            <h3 className='mb-5 text-lg text-gray-700'>Delivery Address</h3>
+                            <div className='grid grid-cols-1 gap-5 justify-center'>
+                                {Object.entries(address)
+                                    .filter(([key]) => !['_id', 'orders', '__v'].includes(key))
+                                    .map(([key, value]) => (
+                                        <div key={key} className="flex items-center">
+                                            <strong>{key.charAt(0).toUpperCase() + key.slice(1)} : </strong>&nbsp;{value}
+                                        </div>
+                                    ))}
+                            </div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
             </div>
         </div>
     );

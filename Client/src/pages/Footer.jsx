@@ -27,7 +27,7 @@ const FooterS = () => {
                             <Footer.LinkGroup col>
                                 <Footer.Link className='hover:text-gray-300' href='#'>Email: info@foodspace.com</Footer.Link>
                                 <Footer.Link className='hover:text-gray-300' href='#'>Phone: +91-0000000000</Footer.Link>
-                                <Footer.Link className='hover:text-gray-300' href='#'>abc Building, Xyz</Footer.Link>
+                                <Footer.Link className='hover:text-gray-300' href='#'>123 Main Street, City, Country.</Footer.Link>
                             </Footer.LinkGroup>
                         </div>
                         <div>

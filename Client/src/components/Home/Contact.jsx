@@ -1,13 +1,28 @@
 import { Button, Label, TextInput, Textarea } from 'flowbite-react';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({});
     const handleChange = (e) => {
-
+        setFormData({ ...formData, [e.target.id]: e.target.value });
     }
 
-    const handleSubmit = (e) => {
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch('/api/contact/addcontact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                return console.log(data.message);
+            }
+            console.log("contact details are added")
+        } catch (error) {
+            console.log("Internal Server Error")
+        }
     }
 
     return (
@@ -47,7 +62,7 @@ const Contact = () => {
                                         <TextInput
                                             type='Number'
                                             placeholder='Phone No.'
-                                            id='phone_no'
+                                            id='phone'
                                             onChange={handleChange}
                                             className='mt-2'
                                         />

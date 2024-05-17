@@ -6,6 +6,7 @@ import userRoutes from './api/routes/user.routes.js';
 import itemRoutes from './api/routes/item.routes.js';
 import orderRoutes from './api/routes/order.routes.js'
 import deliveryRoutes from './api/routes/delivery.routes.js'
+import contactRoutes from './api/routes/contact.routes.js'
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/item', itemRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/delivery', deliveryRoutes);
+app.use('/api/contact', contactRoutes);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

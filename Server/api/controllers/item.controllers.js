@@ -4,9 +4,13 @@ import fs from 'fs'
 
 export const addItem = async (req, res, next) => {
     try {
+        if (req.user.id !== req.params.userId) {
+            return res.status(403).json({ error: 'You are not allowed to add item' });
+        }
         const { name, price, description, category, seller } = req.body;
         const imageFilename = req.file.filename;
-        const newStoreItem = { name, price, description, image: imageFilename, category, seller };
+        const categoryArray = category.split(',').map(cat => cat.trim());
+        const newStoreItem = { name, price, description, image: imageFilename, category: categoryArray, seller };
         const newItem = new Item(newStoreItem);
         await newItem.save();
         const sellerDoc = await User.findById(seller);

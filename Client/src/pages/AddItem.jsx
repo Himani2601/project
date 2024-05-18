@@ -3,14 +3,20 @@ import { Button, Dropdown, Label, TextInput, Textarea, Alert, DropdownDivider } 
 import { IoIosCloudUpload } from "react-icons/io";
 import { menu_list } from '../assets/assets';
 import { StoreContext } from '../context/StoreContext';
+import { useNavigate } from 'react-router-dom'; // Ensure you have react-router for navigation
 
 const AddItem = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedCategory, setSelectedCategory] = useState([]);
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        productname: '',
+        description: '',
+        price: ''
+    });
     const [image, setImage] = useState(null);
 
     const { user } = useContext(StoreContext);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         if (e.target.id === 'category') {
@@ -22,37 +28,31 @@ const AddItem = () => {
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-            setImage(reader.result);
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
+        setImage(file);
     };
 
-    const handleSubmit = async () => {
-        const updatedFormData = { ...formData, image: image, category: selectedCategory, seller: user._id };
-        setFormData(updatedFormData);
-        console.log(updatedFormData);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formDataToSend = new FormData();
+        formDataToSend.append('name', formData.productname);
+        formDataToSend.append('description', formData.description);
+        formDataToSend.append('price', formData.price);
+        formDataToSend.append('category', selectedCategory);
+        formDataToSend.append('image', image);
+        formDataToSend.append('seller', user._id);
         try {
-            const res = fetch(`/api/item/additem/${user._id}`, {
+            const res = await fetch(`/api/item/additem/${user._id}`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: formDataToSend,
             });
             if (res.ok) {
-                const data = await res.json();
-                emptyCart();
                 navigate('/dashboard?tab=ViewItems');
-            }
-            else {
+            } else {
                 setErrorMessage('Failed to add Item');
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            setErrorMessage('An error occurred while adding the item');
         }
     };
 
@@ -68,14 +68,16 @@ const AddItem = () => {
     return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
             <div className='md:w-[40%] w-[85%] mb-10'>
-                <form className='flex flex-col gap-4'>
+                <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
                     <span className='px-2 py-1 text-black rounded-lg inline-block font-bold text-5xl md:text-4xl text-center mb-5' style={{ fontVariant: 'petite-caps' }}>Add Item</span>
                     <div className='flex flex-col justify-center items-center gap-2'>
                         <Label value='Upload Image' className='text-md' />
                         <label htmlFor='imageInput'>
-                            {
-                                image ? <img src={image} alt='' className='w-36 h-24 rounded-lg' /> : <IoIosCloudUpload className='w-20 h-16 cursor-pointer' />
-                            }
+                            {image ? (
+                                <img src={URL.createObjectURL(image)} alt='' className='w-36 h-24 rounded-lg' />
+                            ) : (
+                                <IoIosCloudUpload className='w-20 h-16 cursor-pointer' />
+                            )}
                         </label>
                         <input
                             type='file'
@@ -98,7 +100,6 @@ const AddItem = () => {
                     <div>
                         <Label value='Product Description' />
                         <Textarea
-                            type='text'
                             placeholder='Description'
                             id='description'
                             onChange={handleChange}
@@ -142,7 +143,7 @@ const AddItem = () => {
                             className='mt-2'
                         />
                     </div>
-                    <Button gradientDuoTone="purpleToPink" outline onClick={handleSubmit}>
+                    <Button gradientDuoTone="purpleToPink" outline type="submit">
                         Add Item
                     </Button>
                 </form>

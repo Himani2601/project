@@ -19,7 +19,6 @@ const App = () => {
       <BrowserRouter>
         <header><Header /></header>
         <Routes>
-          {/* <Route path="/additem" element={<AddItem />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
@@ -27,13 +26,12 @@ const App = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/cart" element={<Cart />} />
             <Route path='/dashboard' element={<Dashboard />} />
-            {/* <Route path='/profile' element={<Profile />} /> */}
             <Route path="/menu" element={<Menu />} />
             <Route path="/placeorder" element={<PlaceOrder />} />
           </Route>
-        </Routes>
+        </Routes >
         <footer><FooterS /></footer>
-      </BrowserRouter>
+      </BrowserRouter >
     </>
   )
 }

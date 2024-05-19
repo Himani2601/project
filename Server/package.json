@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon api/index.js",
-    "start": "node api/index.js"
+    "start": "node server/api/index.js"
   },
   "author": "Himani Patil",
   "license": "ISC",

@@ -26,18 +26,27 @@ const SignIn = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
+
+            if (!res.ok) {
+                // If response is not OK, try to parse error message if available
+                const errorData = await res.json();
+                if (errorData.message) {
+                    throw new Error(errorData.message);
+                } else {
+                    throw new Error('An error occurred during sign-in.');
+                }
+            }
+
             const data = await res.json();
             if (data.success === false) {
-                return setErrorMessage("Check Credentitals");
+                return setErrorMessage('Check Credentials');
             }
-            if (res.ok) {
-                // Set user details in context upon successful login
-                login(data);
-                navigate('/menu');
-                setTimeout(() => {
-                    setErrorMessage('');
-                }, 3000);
-            }
+
+            login(data); // Set user details in context upon successful login
+            navigate('/menu');
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 3000);
         } catch (error) {
             setErrorMessage(error.message);
         }

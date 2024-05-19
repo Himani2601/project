@@ -112,3 +112,19 @@ export const deleteItem = async (req, res, next) => {
     }
 };
 
+export const searchItem = async (req, res, next) => {
+    try {
+        const searchQuery = req.query.search;
+        const keyword = searchQuery ? {
+            $or: [
+                { name: { $regex: searchQuery, $options: "i" } },
+                { description: { $regex: searchQuery, $options: "i" } },
+                { category: { $in: [new RegExp(searchQuery, "i")] } }
+            ],
+        } : {};
+        const items = await Item.find(keyword);
+        res.status(200).json({ data: items });
+    } catch (error) {
+        next(error);
+    }
+};

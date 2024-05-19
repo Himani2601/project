@@ -5,7 +5,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../context/StoreContext';
 
 const Header = () => {
-    const { getTotalCartAmount, user, logout } = useContext(StoreContext);
+    const { getTotalCartAmount, user, logout, setSearch } = useContext(StoreContext);
     const [headerValue, setHeaderValue] = useState(user ? 'Menu' : 'Home');
     const [linkValue, setLinkValue] = useState(user ? '/menu' : '/');
     const [showSearchInput, setShowSearchInput] = useState(false);
@@ -58,21 +58,23 @@ const Header = () => {
                                     Menu
                                 </NavLink>
                                 {showSearchInput && (
-                                    <Link to='/search'>
+                                    <Link to="/menu">
                                         <TextInput
                                             type="text"
                                             placeholder="Search Items.."
                                             icon={HiSearch}
+                                            onChange={(e) => setSearch(e.target.value)}
                                             className="border-b my-1 block sm:hidden"
                                             style={{ height: "5vh", outline: "none" }}
                                         />
                                     </Link>
                                 )}
-                                <Link to='/search'>
+                                <Link to="/menu">
                                     <TextInput
                                         type="text"
                                         placeholder="Search Items.."
                                         icon={HiSearch}
+                                        onChange={(e) => setSearch(e.target.value)}
                                         className="border-b hidden sm:block w-[25vw]"
                                         style={{ height: "5.5vh", outline: "none" }}
                                     />
@@ -100,7 +102,7 @@ const Header = () => {
                                         <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Menu', '/menu')}>
                                             Menu
                                         </Dropdown.Item>
-                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Search Item', '/search')}>
+                                        <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Search Item', '/menu')}>
                                             Search Item
                                         </Dropdown.Item>
                                         <Dropdown.Item className='text-md' onClick={() => handleDropdownItemClick('Cart', '/cart')}>

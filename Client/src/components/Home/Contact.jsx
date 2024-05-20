@@ -27,7 +27,7 @@ const Contact = () => {
 
     return (
         <>
-            <section id='about' className="banner relative overflow-hidden bg-cover bg-center flex justify-center items-center m-2">
+            <section id='contact' className="banner relative overflow-hidden bg-cover bg-center flex justify-center items-center m-2">
                 <div className="container mx-auto mt-10">
                     <div className="text-gray-800 text-justify md:text-center">
                         <h1 className="text-2xl md:text-4xl font-mono tracking-wider text-center mb-8"> - Contact Us - </h1>

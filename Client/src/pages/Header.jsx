@@ -40,6 +40,33 @@ const Header = () => {
         }
     };
 
+    const scrollToAbout = () => {
+        const aboutSection = document.getElementById('about');
+        const offsetTop = aboutSection.offsetTop;
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    };
+
+    const scrollToContact = () => {
+        const aboutSection = document.getElementById('contact');
+        const offsetTop = aboutSection.offsetTop;
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    };
+
+    const scrollToHome = () => {
+        const aboutSection = document.getElementById('Home');
+        const offsetTop = aboutSection.offsetTop;
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    };
+
     return (
         <div className='fixed top-0 left-0 right-0 bg-white shadow-lg z-50 items-center'>
             <Navbar className='border-b-2 h-16'>
@@ -137,18 +164,21 @@ const Header = () => {
                         <NavLink
                             to="/"
                             className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold hidden sm:block`}
+                            onClick={scrollToHome}
                         >
                             Home
                         </NavLink>
                         <NavLink
                             to="#"
                             className={({ isActive }) => `block py-2 pr-[1vw] pl-[1vw] duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold hidden sm:block`}
+                            onClick={scrollToAbout}
                         >
                             About
                         </NavLink>
                         <NavLink
                             to="#"
                             className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 hidden sm:block`}
+                            onClick={scrollToContact}
                         >
                             Contact Us
                         </NavLink>

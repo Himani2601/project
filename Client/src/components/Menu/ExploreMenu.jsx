@@ -4,7 +4,7 @@ import { menu_list } from '../../assets/assets';
 const ExploreMenu = ({ category, setCategory }) => {
     return (
         <>
-            <div className='mx-5 mb-10 md:mx-16'>
+            <div className='mx-5 mb-10 md:mx-16' id='menu'>
                 <h3 className='mb-9 md:text-2xl font-mono font-semibold text-lg text-center'>- Explore Our Menu -</h3>
                 <div className='flex justify-between items-center gap-8 overflow-x-auto' style={{ scrollbarWidth: 'none' }}>
                     {menu_list.map((item, index) => {

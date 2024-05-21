@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import backgroundImage from '../../assets/Food.jpg';
+import { useNavigate } from 'react-router-dom'
 
 const Banner = () => {
+    const navigate = useNavigate();
     return (
         <section id="Home" className="banner relative h-screen overflow-hidden bg-cover bg-center flex justify-center items-center mt-16">
             <img src={backgroundImage} className="absolute z-0 inset-0 mx-auto my-auto w-[90vw] h-[90vh] object-cover rounded-xl" />
@@ -20,6 +22,7 @@ const Banner = () => {
                             borderColor: 'white',
                             whiteSpace: 'nowrap'
                         }}
+                        onClick={navigate('/signin')}
                     >
                         - Explore More -
                     </button>

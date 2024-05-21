@@ -9,6 +9,15 @@ const Menu = () => {
 
     const [category, setCategory] = useState('All');
 
+    const scrollToMenu = () => {
+        const aboutSection = document.getElementById('menu');
+        const offsetTop = aboutSection.offsetTop;
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    };
+
     return (
         <>
             <section className="relative h-screen overflow-hidden bg-cover bg-center flex justify-center items-center md:mt-5">
@@ -29,6 +38,7 @@ const Menu = () => {
                                 borderColor: 'white',
                                 whiteSpace: 'nowrap'
                             }}
+                            onClick={scrollToMenu}
                         >
                             View Menu
                         </button>

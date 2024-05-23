@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 
-export const StoreContext = createContext(null);
+const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
@@ -85,4 +85,4 @@ const StoreContextProvider = (props) => {
     );
 };
 
-export default StoreContextProvider;
+export { StoreContextProvider, StoreContext };

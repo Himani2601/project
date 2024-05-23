@@ -73,7 +73,6 @@ const Header = () => {
                 <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-2xl font-extrabold text-white' style={{ fontVariant: 'unicase' }}>
                     <span className='px-2 py-1.5 bg-gradient-to-r from-orange-500 from-30% via-sky-500 via-50% to-emerald-500 to-90% inline-block text-transparent bg-clip-text'>Food Space</span>
                 </Link>
-
                 {user ? (
                     <>
                         <div className='flex sm:justify-between justify-end items-center w-[70%]'>

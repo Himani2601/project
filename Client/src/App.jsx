@@ -9,8 +9,9 @@ import SignUp from "./pages/SignUp"
 import FooterS from "./pages/Footer"
 import ForgetPassword from './pages/ForgetPassword'
 import PlaceOrder from "./components/Cart/PlaceOrder"
+import EditItem from "./components/Seller/EditItem"
 import PrivateRoute from './pages/PrivateRoutes'
-import Dashboard from "./components/Admin/Dashboard"
+import Dashboard from "./components/Seller/Dashboard"
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/placeorder" element={<PlaceOrder />} />
+            <Route path="/edititem" element={<EditItem />} />
           </Route>
         </Routes >
         <footer><FooterS /></footer>

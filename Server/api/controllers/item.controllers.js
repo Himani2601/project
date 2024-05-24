@@ -49,11 +49,8 @@ export const getItems = async (req, res, next) => {
 };
 
 export const updateItem = async (req, res, next) => {
-
-    const { name, price, description, image } = req.body;
-
-    const itemId = req.params.itemId; // Assuming itemId is passed as a parameter in the URL
-
+    const { name, price, description, category, itemId } = req.body;
+    let categoryArray = [];
     try {
         // Check if the authenticated user is allowed to update this item
         if (req.user.id !== req.params.userId) {
@@ -61,16 +58,17 @@ export const updateItem = async (req, res, next) => {
         }
 
         // Manual validation
-        if (!name || !price || !description || !image) {
-            return res.status(400).json({ error: 'All fields are required' });
+        if (category) {
+            categoryArray = category.split(',').map(cat => cat.trim());
         }
         if (typeof price !== 'number' || isNaN(price)) {
             return res.status(400).json({ error: 'Price must be a number' });
         }
 
         // Update the item
-        const updatedItem = await Item.findByIdAndUpdate(itemId, { name, price, description, image }, { new: true });
-
+        const updatedItem = await Item.findByIdAndUpdate(itemId, {
+            $set: { name, description, price, category: categoryArray },
+        }, { new: true });
         // Check if the item exists
         if (!updatedItem) {
             return res.status(404).json({ error: 'Item not found' });
@@ -81,6 +79,7 @@ export const updateItem = async (req, res, next) => {
         next(error);
     }
 };
+
 
 export const deleteItem = async (req, res, next) => {
     const itemId = req.params.itemId;

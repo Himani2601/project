@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 
+// Create the context
 const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
@@ -85,4 +86,5 @@ const StoreContextProvider = (props) => {
     );
 };
 
+// Export both StoreContext and StoreContextProvider
 export { StoreContextProvider, StoreContext };

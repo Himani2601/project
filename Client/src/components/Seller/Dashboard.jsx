@@ -4,7 +4,7 @@ import { HiChartPie, HiUser, HiOutlineViewGridAdd, HiArrowLeft, HiOutlineShoppin
 import { FaShoppingBasket } from "react-icons/fa";
 import { StoreContext } from '../../context/StoreContext';
 import Profile from '../../pages/Profile';
-import AddItem from '../../pages/AddItem';
+import AddItem from './AddItem';
 import Orders from './Orders';
 import ViewItems from './ViewItems';
 import MyOrders from '../../pages/MyOrder';

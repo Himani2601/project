@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Button, Dropdown, Label, TextInput, Textarea, Alert, DropdownDivider } from 'flowbite-react';
 import { IoIosCloudUpload } from "react-icons/io";
-import { menu_list } from '../assets/assets';
-import { StoreContext } from '../context/StoreContext';
+import { menu_list } from '../../assets/assets';
+import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom'; // Ensure you have react-router for navigation
 
 const AddItem = () => {

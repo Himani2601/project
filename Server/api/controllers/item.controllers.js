@@ -30,13 +30,28 @@ export const getAllItems = async (req, res, next) => {
     try {
         const users = await User.find({ location, isSeller: true });
         const userIds = users.map(user => user._id);
-        const items = await Item.find({ seller: { $in: userIds } });
+        const items = await Item.find({ seller: { $in: userIds }, availability: true });
         res.status(200).json({ success: true, data: items });
     } catch (error) {
         next(error);
     }
 };
 
+export const changeAvailability = async (req, res, async) => {
+    const { itemId } = req.body;
+    try {
+        if (req.user.id !== req.params.userId) {
+            return res.status(403).json({ error: 'You are not allowed to change availability of this item.' })
+        }
+        const item = await Item.findById(itemId);
+        if (!item) return res.status(404).json({ success: false, message: 'Item not found' });
+        item.availability = !item.availability;
+        await item.save();
+        res.status(200).json({ success: true, message: 'Item availability changed successfully' });
+    } catch (error) {
+        next(error);
+    }
+}
 
 export const getItems = async (req, res, next) => {
     const userId = req.params.userId;
@@ -56,18 +71,9 @@ export const updateItem = async (req, res, next) => {
         if (req.user.id !== req.params.userId) {
             return res.status(403).json({ error: 'You are not allowed to update this item' });
         }
-
-        // Manual validation
-        if (category) {
-            categoryArray = category.split(',').map(cat => cat.trim());
-        }
-        if (typeof price !== 'number' || isNaN(price)) {
-            return res.status(400).json({ error: 'Price must be a number' });
-        }
-
         // Update the item
         const updatedItem = await Item.findByIdAndUpdate(itemId, {
-            $set: { name, description, price, category: categoryArray },
+            $set: { name, description, price, category },
         }, { new: true });
         // Check if the item exists
         if (!updatedItem) {
@@ -79,7 +85,6 @@ export const updateItem = async (req, res, next) => {
         next(error);
     }
 };
-
 
 export const deleteItem = async (req, res, next) => {
     const itemId = req.params.itemId;

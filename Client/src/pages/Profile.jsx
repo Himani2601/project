@@ -22,7 +22,6 @@ const Profile = () => {
     };
 
     const handleProfileUpdate = async () => {
-        console.log(formData);
         try {
             const res = await fetch(`/api/user/update/${user._id}`, {
                 method: 'PUT',

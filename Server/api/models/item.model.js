@@ -23,6 +23,10 @@ const itemSchema = new Schema({
         type: [String],
         required: true
     },
+    availability: {
+        type: Boolean,
+        default: true
+    },
     seller: {
         type: mongoose.Types.ObjectId,
         ref: "User",

@@ -3,19 +3,14 @@ import { CiMenuKebab } from "react-icons/ci";
 import { StoreContext } from '../../context/StoreContext';
 import { Button, Dropdown, DropdownDivider, Modal } from 'flowbite-react';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const ViewItems = () => {
     const { user } = useContext(StoreContext);
-    const [status, setStatus] = useState('In Stock');
     const [sellingItems, setSellingItems] = useState([]);
     const [deleteShowModal, setDeleteShowModal] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null); // Track the item to delete
     const navigate = useNavigate();
-
-    const toggleStatus = () => {
-        setStatus((prevStatus) => (prevStatus === 'In Stock' ? 'Out of Stock' : 'In Stock'));
-    };
 
     const handleEdit = (item) => {
         navigate(`/edititem`, { state: { item } });
@@ -42,6 +37,25 @@ const ViewItems = () => {
         setDeleteShowModal(true);
     };
 
+    const handleAvailability = async (itemId, currentAvailability) => {
+        try {
+            const res = await fetch(`/api/item/updateavailability/${user._id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ itemId, availability: !currentAvailability }),
+            });
+            if (res.ok) {
+                setSellingItems(sellingItems.map(item =>
+                    item._id === itemId ? { ...item, availability: !currentAvailability } : item
+                ));
+            } else {
+                console.log("Error in changing Availability");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
         const fetchItems = async () => {
             try {
@@ -66,8 +80,11 @@ const ViewItems = () => {
     return (
         <div className="flex flex-wrap">
             {sellingItems.map((item) => (
-                <div key={item._id} className="lg:w-1/3 md:w-1/2 sm:w-full w-full md:p-5 p-8">
-                    <div className="h-full border-2 border-gray-300 shadow-md border-opacity-60 rounded-lg overflow-hidden transition duration-300 transform hover:scale-105">
+                <div
+                    key={item._id}
+                    className={`lg:w-1/3 md:w-1/2 sm:w-full w-full md:p-5 p-8 ${!item.availability ? 'filter grayscale' : ''}`}
+                >
+                    <div className="h-full border-2 border-gray-300 shadow-md border-opacity-60 rounded-lg overflow-hidden transition duration-300 transform hover:scale-105 ">
                         <div className='relative'>
                             <img
                                 className="lg:h-48 md:h-36 w-full object-cover object-center transition duration-300 transform hover:scale-105"
@@ -78,13 +95,11 @@ const ViewItems = () => {
                                 <Dropdown
                                     arrowIcon={false}
                                     inline
-                                    label={
-                                        <CiMenuKebab />
-                                    }
+                                    label={<CiMenuKebab />}
                                     className='w-32'
                                 >
-                                    <Dropdown.Header className='text-center font-semibold' onClick={toggleStatus}>
-                                        {status}
+                                    <Dropdown.Header className='text-center font-semibold' onClick={() => handleAvailability(item._id, item.availability)}>
+                                        {item.availability ? 'Out of Stock' : 'In Stock'}
                                     </Dropdown.Header>
                                     <DropdownDivider />
                                     <Dropdown.Item className='text-xs font-semibold justify-center' onClick={() => handleEdit(item)}>

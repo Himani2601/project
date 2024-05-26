@@ -4,7 +4,7 @@ import Order from '../models/order.model.js'
 export const addDeliveryDetails = async (req, res, next) => {
     const { orders, name, email, plot_no, street, city, state, pincode, phone, category } = req.body;
     try {
-        const deliveryDetail = new Delivery({ orders, name, email, plot_no: Number(plot_no), street, city, state, pincode: Number(pincode), phone, payment: category });
+        const deliveryDetail = new Delivery({ orders, name, email, plot_no: Number(plot_no), street, city, state, pincode: Number(pincode), phone, paymentMethod: category });
         await deliveryDetail.save();
         for (const data of orders) {
             const order = await Order.findById(data._id);

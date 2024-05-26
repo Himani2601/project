@@ -39,7 +39,7 @@ const deliverySchema = new Schema({
         type: String,
         required: true
     },
-    payment: {
+    paymentMethod: {
         type: String,
         required: true
     }
